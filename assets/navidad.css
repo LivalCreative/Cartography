@@ -1,6 +1,20 @@
-/* Tema navideño de temporada. Para quitarlo: borra el <link> de este archivo, el <script> de nieve.js
-   y los elementos con clase "luces" en cada página. */
+/* Tema navideño de temporada. Para quitarlo: borra el <link> de este archivo y el <script> de nieve.js
+   en cada página (nieve.js también agrega las decoraciones), y la clase "navidad" del <body>. */
+body.navidad{
+  --rojo:#c3313d;--rojo2:#9c2230;--rojoclaro:#fbe3e3;--verde:#2f6b4f;--verde2:#235640;--verdeclaro:#e3f0e7;--oro:#e8b04b;
+  --rosa:#c3313d;--rosa2:#9c2230;--rosaclaro:#fbe3e3;
+  background:var(--arena) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23e9d6cc' stroke-width='1.2' stroke-linecap='round'%3E%3Cpath d='M30 18v20M21 23l18 10M21 33l18-10'/%3E%3Cpath d='M90 72v16M83 76l14 8M83 84l14-8'/%3E%3C/g%3E%3Ccircle cx='70' cy='30' r='1.6' fill='%23ead9cf'/%3E%3Ccircle cx='20' cy='92' r='1.6' fill='%23ead9cf'/%3E%3C/svg%3E");
+}
 #nieve{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:40}
+
+/* Barra superior y logo con gorro */
+.banda-navidad{background:repeating-linear-gradient(135deg,var(--rojo) 0 14px,var(--rojo2) 14px 28px);color:#fff;text-align:center;font-size:13px;font-weight:700;padding:8px 14px;letter-spacing:.01em;text-shadow:0 1px 0 rgba(0,0,0,.15)}
+.banda-navidad b{color:#ffe9a8}
+.navidad .barra{background:rgba(251,241,236,.96)}
+.navidad .logo{position:relative;color:var(--verde)}
+.gorro{position:absolute;left:-9px;top:-14px;width:38px;height:30px;transform:rotate(-18deg);pointer-events:none}
+.navidad .mi-pedido{border-color:var(--verde);color:var(--verde2)}
+.navidad .mi-pedido .n{background:var(--rojo)}
 
 /* Luces debajo de la barra */
 .luces{position:absolute;left:0;right:0;bottom:-11px;height:22px;overflow:hidden;pointer-events:none}
@@ -13,16 +27,87 @@
 .luces span:nth-child(4n+4){background:#a77bc9;box-shadow:0 0 8px 2px rgba(167,123,201,.55);animation-delay:1.8s}
 @keyframes brillo{0%,100%{opacity:1}50%{opacity:.35}}
 
-/* Detalles de temporada */
-.copo{display:inline-block;width:1em;height:1em;vertical-align:-.12em;color:var(--rosa)}
-.kicker .copo{color:var(--rosa2)}
-h2.sec .copo,h3.cat .copo{width:.8em;height:.8em;margin-left:6px;opacity:.75}
-.banda-navidad{background:#3e2c47;color:#fbf1ec;text-align:center;font-size:13px;font-weight:700;padding:8px 14px;letter-spacing:.01em}
-.banda-navidad b{color:#f5c451}
-.prod{position:relative}
-.prod .foto::after{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:radial-gradient(circle at 8px -2px,#fff 7px,transparent 7.5px) 0 0/16px 10px repeat-x;opacity:.9}
-.pie .felices{font-family:var(--firma);font-size:26px;color:var(--rosa);margin:0 0 4px}
+/* Botones: rojo navideño y verde */
+.navidad .btn{background:var(--rojo);box-shadow:inset 0 -3px 0 rgba(0,0,0,.12)}
+.navidad .btn:hover{background:var(--rojo2)}
+.navidad .btn.claro{background:#fff;color:var(--verde2);border:1.5px solid var(--verde);box-shadow:none}
+.navidad #agregar,.navidad #enviar{background:repeating-linear-gradient(135deg,var(--rojo) 0 16px,#d24450 16px 32px)}
+
+/* Portada */
+.navidad .kicker{background:var(--verdeclaro);color:var(--verde2)}
+.copo{display:inline-block;width:1em;height:1em;vertical-align:-.12em;color:currentColor}
+h2.sec .copo,h3.cat .copo{width:.8em;height:.8em;margin-left:6px;color:var(--verde)}
+.navidad h1.grande .rojo{color:var(--rojo)}
+.esferas{position:absolute;top:0;right:4%;display:flex;gap:26px;pointer-events:none;z-index:1}
+.esferas svg{transform-origin:50% 0;animation:mece 4s ease-in-out infinite}
+.esferas svg:nth-child(2){animation-delay:-1.3s}.esferas svg:nth-child(3){animation-delay:-2.6s}.esferas svg:nth-child(4){animation-delay:-.7s}
+@keyframes mece{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+@media(max-width:759px){.esferas{right:2%;gap:14px}.esferas svg{transform:scale(.8)}}
+.sello-wrap{position:relative;display:inline-block}
+.sello-wrap .gorro{width:90px;height:72px;left:-6px;top:-30px}
+@media(min-width:760px){.sello-wrap .gorro{width:130px;height:104px;left:-14px;top:-46px}}
+.nieve-borde{display:block;width:100%;height:46px;margin-top:-1px}
+
+/* Pasos y cortes */
+.navidad .pasos{border:2px dashed #e3cfc4}
+.navidad .ic{background:var(--verdeclaro)}
+.navidad .ic svg{stroke:var(--verde)}
+.navidad .st:nth-child(4n+3) .ic{background:var(--rojoclaro)}
+.navidad .st:nth-child(4n+3) .ic svg{stroke:var(--rojo)}
+.navidad .corte{position:relative;border:1.5px solid #ead7cd;overflow:visible}
+.navidad .corte::before{content:"";position:absolute;top:-1px;bottom:-1px;left:60px;width:10px;background:var(--rojo);opacity:.9}
+.navidad .corte .dia{border-right:0;padding-right:20px}
+.navidad .corte .dia b{color:var(--verde2)}
+.navidad .corte.prox{border-color:var(--rojo);box-shadow:0 0 0 3px var(--rojoclaro)}
+.navidad .corte .tag{background:var(--rojoclaro);color:var(--rojo2)}
+
+/* Catálogo */
+.navidad .chip{border-color:#e3cfc4;color:var(--verde2)}
+.navidad .chip:hover{border-color:var(--verde)}
+.navidad h3.cat{color:var(--verde2);display:flex;align-items:center;gap:8px}
+.navidad h3.cat::before{content:"";width:26px;height:16px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 16'%3E%3Cpath d='M12 9C8 2 2 4 1 7c3 0 4 2 4 4 2-2 4-1 7-2zM14 9c4-7 10-5 11-2-3 0-4 2-4 4-2-2-4-1-7-2z' fill='%232f6b4f'/%3E%3Ccircle cx='11' cy='10' r='2.6' fill='%23c3313d'/%3E%3Ccircle cx='15' cy='10.5' r='2.6' fill='%23c3313d'/%3E%3Ccircle cx='13' cy='13' r='2.4' fill='%23d84a55'/%3E%3C/svg%3E") no-repeat center/contain}
+.navidad .prod{border:1.5px solid #ead7cd}
+.navidad .prod:hover{border-color:var(--rojo)}
+.navidad .prod .foto{border-bottom:4px solid transparent;border-image:repeating-linear-gradient(135deg,var(--rojo) 0 8px,#fff 8px 16px) 4}
+.navidad .prod .foto::after{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:radial-gradient(circle at 8px -2px,#fff 7px,transparent 7.5px) 0 0/16px 10px repeat-x}
+.navidad .prod .pre{color:var(--rojo)}
+.navidad .prod .badge{background:var(--verde);color:#fff}
+
+/* Página de producto */
+.navidad .galeria .principal{border:6px solid transparent;border-image:repeating-linear-gradient(135deg,var(--rojo) 0 12px,#fff 12px 24px) 6;border-radius:0}
+.navidad .galeria .tag{background:var(--verde);color:#fff}
+.navidad .detalle .marca{color:var(--verde)}
+.navidad .detalle .precio .p,.navidad .precio .p{color:var(--rojo)}
+.navidad .detalle .precio .a{background:var(--verdeclaro);color:var(--verde2)}
+.navidad .fechas{background:var(--verdeclaro);border-left:4px solid var(--verde)}
+.navidad .bloque h2{color:var(--verde2)}
+.navidad .usos .i{color:var(--rojo)}
+.navidad .migas a{color:var(--verde2)}
+
+/* Mi pedido: la caja del total como regalo */
+.navidad .col-der .caja:first-child{position:relative;border:2px solid var(--rojo);overflow:hidden}
+.navidad .col-der .caja:first-child::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:14px;margin-left:-7px;background:var(--rojo);opacity:.12}
+.navidad .col-der .caja:first-child::after{content:"";position:absolute;left:50%;margin-left:-22px;top:-2px;width:44px;height:30px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 30'%3E%3Cpath d='M22 12C14 2 4 2 6 10c2 6 12 4 16 2zM22 12c8-10 18-10 16-2-2 6-12 4-16 2z' fill='%23c3313d'/%3E%3Cpath d='M22 12l-6 16M22 12l6 16' stroke='%23c3313d' stroke-width='4'/%3E%3Ccircle cx='22' cy='12' r='4' fill='%239c2230'/%3E%3C/svg%3E") no-repeat center/contain}
+.navidad .pago{background:var(--verdeclaro)}
+.navidad .pago .fila{color:var(--verde2)}
+.navidad .pago .fila b{color:var(--rojo)}
+.navidad .caja h2::before{content:"✦ ";color:var(--oro)}
+
+/* Preguntas */
+.navidad details{border:1.5px solid #ead7cd}
+.navidad details summary::before{content:"";display:inline-block;width:12px;height:14px;margin-right:8px;vertical-align:-1px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 14'%3E%3Crect x='4' y='0' width='4' height='3' rx='1' fill='%23e8b04b'/%3E%3Ccircle cx='6' cy='8.5' r='5.2' fill='%23c3313d'/%3E%3Cpath d='M3 7.5a3.5 3.5 0 0 1 2.5-2.4' stroke='%23fff' stroke-width='1' fill='none' opacity='.7'/%3E%3C/svg%3E") no-repeat center/contain}
+.navidad details:nth-child(even) summary::before{filter:hue-rotate(140deg) saturate(.8)}
+
+/* Pie: pueblito nevado */
+.navidad .pie{padding:0;margin-top:40px;background:#3e2c47;color:#e9dfe6}
+.pueblo{display:block;width:100%;height:110px}
+.navidad .pie .wrap{padding:6px 18px 40px}
+.pie .felices{font-family:var(--firma);font-size:30px;color:#ffe9a8;margin:0 0 4px}
+
+/* Aviso */
+.navidad .aviso{background:var(--verde2)}
+.navidad .aviso a{color:#ffe9a8}
 
 @media (prefers-reduced-motion: reduce){
-  .luces span{animation:none}
+  .luces span,.esferas svg{animation:none}
 }
