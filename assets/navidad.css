@@ -111,3 +111,6 @@ h2.sec .copo,h3.cat .copo{width:.8em;height:.8em;margin-left:6px;color:var(--ver
 @media (prefers-reduced-motion: reduce){
   .luces span,.esferas svg{animation:none}
 }
+.navidad .circulo.activo .bola,.navidad .circulo:hover .bola{border-color:var(--rojo)}
+.navidad .circulo.activo .nombre{color:var(--rojo)}
+.navidad .cat-titulo{color:var(--verde2)}

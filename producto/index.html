@@ -11,8 +11,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="../assets/estilo.css?v=6">
-<link rel="stylesheet" href="../assets/navidad.css?v=3">
+<link rel="stylesheet" href="../assets/estilo.css?v=7">
+<link rel="stylesheet" href="../assets/navidad.css?v=4">
 <script src="../assets/nieve.js?v=3"></script>
 </head>
 <body class="navidad">
@@ -26,7 +26,7 @@
 </header>
 
 <main class="wrap ficha-wrap">
-  <nav class="migas" aria-label="Ruta"><a href="../#productos">Productos</a><span aria-hidden="true">›</span><span id="migaCat"></span></nav>
+  <nav class="migas" aria-label="Ruta"><a href="../">Inicio</a><span aria-hidden="true">›</span><span id="migaCat"></span></nav>
 
   <div id="noEncontrado" class="caja vacio" hidden>
     <p style="margin:0 0 14px">No encontramos este producto. Puede que ya no esté disponible.</p>
@@ -88,10 +88,10 @@
 <footer class="pie"><div class="wrap"><p class="felices">Felices fiestas</p>Cartography · Querétaro</div></footer>
 <div class="aviso" id="aviso" hidden role="status"></div>
 
-<script src="../assets/productos.js?v=7"></script>
+<script src="../assets/productos.js?v=8"></script>
 <script>window.CARTO_PRODUCTOS.forEach(p => { p.fotos = p.fotos.map(f => /^https?:/.test(f) ? f : "../" + f); });</script>
 <script src="../assets/tienda.js?v=5"></script>
-<script src="../assets/comun.js?v=6"></script>
+<script src="../assets/comun.js?v=8"></script>
 <script>
 (function () {
   const C = window.CARTO, U = window.CARTO_UI, esc = U.esc, $ = id => document.getElementById(id);
@@ -102,7 +102,8 @@
 
   document.title = p.nombre + " · " + p.marca + " · Cartography";
   $("ficha").hidden = false;
-  $("migaCat").textContent = (p.categoria ? p.categoria + (p.grupo ? " › " + p.grupo : "") : p.marca);
+  const cat = U.catDe(p);
+  $("migaCat").innerHTML = cat ? '<a href="../categoria/?c=' + cat.id + '">' + esc(cat.nombre) + "</a>" + (p.grupo ? ' <span aria-hidden="true">›</span> <a href="../categoria/?c=' + cat.id + "&g=" + p.grupo.toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") + '">' + esc(p.grupo) + "</a>" : "") : esc(p.marca);
   $("fotoGrande").src = p.fotos[0]; $("fotoGrande").alt = p.nombre;
   if (p.badge) { $("badge").textContent = p.badge; $("badge").hidden = false; }
   if (p.fotos.length > 1) {

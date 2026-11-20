@@ -12,8 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="assets/estilo.css?v=6">
-<link rel="stylesheet" href="assets/navidad.css?v=3">
+<link rel="stylesheet" href="assets/estilo.css?v=7">
+<link rel="stylesheet" href="assets/navidad.css?v=4">
 <script src="assets/nieve.js?v=3"></script>
 </head>
 <body class="navidad">
@@ -49,8 +49,7 @@
       <h1 class="grande">Lo que te gusta de USA, sin salir de casa.</h1>
       <p class="lead">Lo compramos e importamos por ti. Tú solo ordenas y lo recibes en tu punto de entrega favorito.</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <a class="btn" href="#productos">Holidays</a>
-        <a class="btn" href="#belleza">Belleza y cuidado</a>
+        <a class="btn" href="#productos">Ver productos</a>
         <a class="btn claro" id="pedirAlgo" href="#">¿Buscas algo más?</a>
       </div>
       </div>
@@ -68,19 +67,9 @@
 
   <section class="seccion" id="productos">
     <div class="wrap">
-      <h2 class="sec">Holidays <svg class="copo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M4.2 6.5l15.6 9M4.2 17.5l15.6-9M9.5 3.5 12 6l2.5-2.5M9.5 20.5 12 18l2.5 2.5M3 9.7l3.4.9-.9 3.4M21 14.3l-3.4-.9.9-3.4M3 14.3l3.4-.9-.9-3.4M21 9.7l-3.4.9.9 3.4"/></svg></h2>
-      <p class="sub">Dulces, chocolates y antojos de temporada que solo salen en Navidad en Estados Unidos. Toca uno para ver qué es y cuándo te llega.</p>
-      <div class="chips" id="chips"></div>
-      <div id="grid"></div>
-    </div>
-  </section>
-
-  <section class="seccion" id="belleza">
-    <div class="wrap">
-      <h2 class="sec">Belleza y cuidado <svg class="copo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M4.2 6.5l15.6 9M4.2 17.5l15.6-9M9.5 3.5 12 6l2.5-2.5M9.5 20.5 12 18l2.5 2.5M3 9.7l3.4.9-.9 3.4M21 14.3l-3.4-.9.9-3.4M3 14.3l3.4-.9-.9-3.4M21 9.7l-3.4.9.9 3.4"/></svg></h2>
-      <p class="sub">Skincare, kits de regalo, cuidado del bebé y sets para él de las marcas favoritas de Estados Unidos. Toca uno para ver qué es y cuándo te llega.</p>
-      <div class="chips" id="chips2"></div>
-      <div id="grid2"></div>
+      <h2 class="sec">Categorías <svg class="copo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M4.2 6.5l15.6 9M4.2 17.5l15.6-9M9.5 3.5 12 6l2.5-2.5M9.5 20.5 12 18l2.5 2.5M3 9.7l3.4.9-.9 3.4M21 14.3l-3.4-.9.9-3.4M3 14.3l3.4-.9-.9-3.4M21 9.7l-3.4.9.9 3.4"/></svg></h2>
+      <p class="sub">Elige una categoría para ver sus productos.</p>
+      <div class="circulos grandes" id="cats"></div>
     </div>
   </section>
 
@@ -106,14 +95,15 @@
 
 <div class="aviso" id="aviso" hidden role="status"></div>
 
-<script src="assets/productos.js?v=7"></script>
+<script src="assets/productos.js?v=8"></script>
 <script src="assets/tienda.js?v=5"></script>
-<script src="assets/comun.js?v=6"></script>
+<script src="assets/comun.js?v=8"></script>
 <script>
 (function () {
   const C = window.CARTO, U = window.CARTO_UI, esc = U.esc;
   // Enlaces viejos con #p=producto
   const m = /#p=([\w-]+)/.exec(location.hash); if (m) { location.replace("producto/?id=" + m[1]); return; }
+  if (location.hash === "#belleza") { location.replace("categoria/?c=belleza"); return; }
 
   document.getElementById("flow").innerHTML = U.pasosHTML();
 
@@ -131,19 +121,7 @@
   pa.href = "https://wa.me/52" + C.WHATSAPP + "?text=" + encodeURIComponent("¡Hola Cartography! Busco un producto que no vi en la tienda: ");
   pa.target = "_blank"; pa.rel = "noopener";
 
-  // Productos agrupados por categoría y subsección (grupo), en el orden de cada lista
-  const slug = s => "sec-" + s.toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/g, "-");
-  function pinta(cat, GRUPOS, chipsId, gridId) {
-    const ps = C.PRODUCTOS.filter(p => (p.categoria || "Holidays") === cat);
-    const nombres = GRUPOS.concat([...new Set(ps.map(p => p.grupo || cat))].filter(s => !GRUPOS.includes(s)));
-    const secs = nombres.map(s => ({ s, ps: ps.filter(p => (p.grupo || cat) === s) })).filter(x => x.ps.length);
-    document.getElementById(chipsId).innerHTML = secs.length > 1 ? secs.map(x => '<a class="chip" href="#' + slug(x.s) + '">' + esc(x.s) + ' <span>' + x.ps.length + "</span></a>").join("") : "";
-    document.getElementById(gridId).innerHTML = secs.map(x =>
-      '<div class="seccion-cat" id="' + slug(x.s) + '"><h3 class="cat">' + esc(x.s) + '</h3><div class="grid">' +
-      x.ps.map(p => U.tarjetaHTML(p, "producto/?id=")).join("") + "</div></div>").join("");
-  }
-  pinta("Holidays", ["Chocolates", "Gomitas y dulces", "Galletas, cereal y botanas", "Café, té y chocolate caliente", "Bebidas"], "chips", "grid");
-  pinta("Belleza y cuidado", ["Kits de skincare", "Cuidado facial", "Cuerpo y baño", "Bebé", "Para él", "Labios y manos"], "chips2", "grid2");
+  document.getElementById("cats").innerHTML = U.CATEGORIAS.map(c => U.circuloHTML("categoria/?c=" + c.id, U.fotoCategoria(c), c.nombre)).join("");
 })();
 </script>
 </body>

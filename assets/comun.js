@@ -21,6 +21,32 @@
       (p.badge ? '<span class="badge">' + esc(p.badge) + "</span>" : "") + '</div><div class="info"><span class="marca">' + esc(p.marca) +
       '</span><span class="nom">' + esc(p.nombre) + '</span><span class="pre">' + C.dinero(p.precio) + "</span></div></a>";
   }
+
+  // Categorías de la tienda: id (para la URL), nombre (igual a p.categoria), texto, orden de subsecciones y portada
+  const CATEGORIAS = [
+    { id: "holidays", nombre: "Holidays", sub: "Dulces, chocolates y antojos de temporada que solo salen en Navidad en Estados Unidos.",
+      grupos: ["Chocolates", "Gomitas y dulces", "Galletas, cereal y botanas", "Café, té y chocolate caliente", "Bebidas"], portada: ["t1011368150"] },
+    { id: "belleza", nombre: "Belleza y cuidado", sub: "Skincare, kits de regalo, cuidado del bebé y sets para él de las marcas favoritas de Estados Unidos.",
+      grupos: ["Kits de skincare", "Cuidado facial", "Cuerpo y baño", "Bebé", "Para él", "Labios y manos"], portada: ["t93592823", "t95248090", "t92909421"] },
+  ];
+  const catPorId = id => CATEGORIAS.find(c => c.id === id);
+  const catDe = p => CATEGORIAS.find(c => c.nombre === (p.categoria || "Holidays"));
+  const productosDe = c => C.PRODUCTOS.filter(p => (p.categoria || "Holidays") === c.nombre);
+  // Círculo estilo Target: foto redonda + nombre
+  function circuloHTML(href, foto, nombre, activo) {
+    return '<a class="circulo' + (activo ? " activo" : "") + '" href="' + href + '"' + (activo ? ' aria-current="page"' : "") +
+      '><span class="bola"><img loading="lazy" src="' + esc(foto) + '" alt=""></span><span class="nombre">' + esc(nombre) + "</span></a>";
+  }
+  function fotoCategoria(c) {
+    const ps = productosDe(c);
+    const p = ps.find(x => x.id === c.portada[0]) || ps[0];
+    return p ? p.fotos[0] : "";
+  }
+  function fotoGrupo(c, g) {
+    const ps = productosDe(c).filter(p => p.grupo === g);
+    const p = ps.find(x => (c.fotosGrupo || {})[g] === x.id) || ps[0];
+    return p ? p.fotos[0] : "";
+  }
   function aviso(texto, href, accion) {
     const a = document.getElementById("aviso"); if (!a) return;
     a.innerHTML = "<span>" + esc(texto) + "</span>" + (href ? '<a href="' + href + '">' + esc(accion) + "</a>" : "");
@@ -30,5 +56,5 @@
     const b = document.getElementById("banda"), pc = C.proximoCruce && C.proximoCruce();
     if (b && pc) b.innerHTML = "Edición navideña · Pide antes del <b>" + C.bonita(pc.corteMismoDia) + "</b> y recíbelo del " + esc(pc.entrega);
   });
-  window.CARTO_UI = { esc, pasosHTML, tarjetaHTML, aviso, USO };
+  window.CARTO_UI = { esc, pasosHTML, tarjetaHTML, aviso, USO, CATEGORIAS, catPorId, catDe, productosDe, circuloHTML, fotoCategoria, fotoGrupo };
 })();
