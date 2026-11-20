@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="../assets/estilo.css?v=2">
+<link rel="stylesheet" href="../assets/estilo.css?v=3">
 </head>
 <body>
 
@@ -22,53 +22,56 @@
   </div>
 </header>
 
-<main class="wrap" style="max-width:560px;padding-top:26px;padding-bottom:60px">
-  <h1 class="sec" style="font-family:var(--titulo);font-weight:800;font-size:28px;margin:0 0 16px">Mi pedido</h1>
+<main class="wrap pedido-wrap">
+  <h1 class="sec" style="font-family:var(--titulo);font-weight:800;font-size:30px;margin:0 0 18px">Mi pedido</h1>
 
   <div id="vacio" class="caja vacio" hidden>
     <p style="margin:0 0 14px">Tu pedido está vacío por ahora.</p>
     <a class="btn" href="../#productos">Ver productos</a>
   </div>
 
-  <div id="lleno" hidden>
-    <div class="caja" id="lineas"></div>
-
-    <div class="caja">
-      <div class="fila tot" style="border-top:0;margin-top:0;padding-top:0"><span>Total de tu pedido</span><span id="total"></span></div>
-      <div class="pago">
-        <div class="fila"><span>Ordena con</span><b id="ordena"></b></div>
-        <div class="fila"><span>Cuando lo tengas en tus manos</span><span id="resto"></span></div>
+  <div id="lleno" class="pedido-grid" hidden>
+    <div class="col-izq">
+      <div class="caja" id="lineas"></div>
+      <div class="caja">
+        <h2 style="font-size:17px;font-weight:800;margin:0 0 12px">Tus datos</h2>
+        <label class="campo">Tu nombre<input id="fNombre" autocomplete="name" placeholder="Ana López"></label>
+        <p class="error" id="eNombre" hidden>Escribe tu nombre.</p>
+        <label class="campo">Punto de entrega que prefieres
+          <select id="fLugar"></select>
+        </label>
+        <p class="error" id="eLugar" hidden>Elige un punto de entrega.</p>
+        <label class="campo">Comentarios (opcional)<textarea id="fNotas" placeholder="Es para regalo, prefiero entrega en la tarde…"></textarea></label>
+        <p class="nota" style="margin:-4px 0 0">El día y la hora de entrega los acordamos por WhatsApp cuando llegue tu pedido.</p>
       </div>
-      <p class="nota" id="entrega" style="margin:10px 0 0"></p>
     </div>
 
-    <div class="caja">
-      <h2 style="font-size:17px;font-weight:800;margin:0 0 12px">Tus datos</h2>
-      <label class="campo">Tu nombre<input id="fNombre" autocomplete="name" placeholder="Ana López"></label>
-      <p class="error" id="eNombre" hidden>Escribe tu nombre.</p>
-      <label class="campo">Punto de entrega que prefieres
-        <select id="fLugar"></select>
-      </label>
-      <p class="error" id="eLugar" hidden>Elige un punto de entrega.</p>
-      <label class="campo">Comentarios (opcional)<textarea id="fNotas" placeholder="Es para regalo, prefiero entrega en la tarde…"></textarea></label>
-      <p class="nota" style="margin:-4px 0 0">El día y la hora de entrega los acordamos por WhatsApp cuando llegue tu pedido.</p>
-    </div>
+    <div class="col-der">
+      <div class="caja">
+        <div class="fila tot" style="border-top:0;margin-top:0;padding-top:0"><span>Total de tu pedido</span><span id="total"></span></div>
+        <div class="pago">
+          <div class="fila"><span>Ordena con</span><b id="ordena"></b></div>
+          <div class="fila"><span>Cuando lo tengas en tus manos</span><span id="resto"></span></div>
+        </div>
+        <p class="nota" id="entrega" style="margin:10px 0 0"></p>
+      </div>
 
-    <div class="caja">
-      <h2 style="font-size:17px;font-weight:800;margin:0 0 6px">Cómo ordenar</h2>
-      <p style="font-size:14px;color:var(--tinta2);margin:0 0 10px">1. Envía tu pedido por WhatsApp.<br>2. Transfiere <b id="ordena2"></b> a esta cuenta y manda tu comprobante en el mismo chat.</p>
-      <div class="clabe"><span id="clabe"></span><button type="button" id="copiar">Copiar</button></div>
-      <p style="font-size:13px;color:var(--tinta2);margin:0 0 4px"><span id="banco"></span></p>
-      <p class="nota" style="margin:8px 0 0">Tu pedido se confirma cuando recibimos tu comprobante. Lo que falta lo pagas al momento de la entrega.</p>
-    </div>
+      <div class="caja">
+        <h2 style="font-size:17px;font-weight:800;margin:0 0 6px">Cómo ordenar</h2>
+        <p style="font-size:14px;color:var(--tinta2);margin:0 0 10px">1. Envía tu pedido por WhatsApp.<br>2. Transfiere <b id="ordena2"></b> a esta cuenta y manda tu comprobante en el mismo chat.</p>
+        <div class="clabe"><span id="clabe"></span><button type="button" id="copiar">Copiar</button></div>
+        <p style="font-size:13px;color:var(--tinta2);margin:0 0 4px"><span id="banco"></span></p>
+        <p class="nota" style="margin:8px 0 0">Tu pedido se confirma cuando recibimos tu comprobante. Lo que falta lo pagas al momento de la entrega.</p>
+      </div>
 
-    <button class="btn full" type="button" id="enviar" style="height:52px;font-size:16px">Enviar mi pedido por WhatsApp</button>
+      <button class="btn full" type="button" id="enviar" style="height:52px;font-size:16px">Enviar mi pedido por WhatsApp</button>
+    </div>
   </div>
 </main>
 
-<script src="../assets/productos.js?v=2"></script>
+<script src="../assets/productos.js?v=3"></script>
 <script>window.CARTO_PRODUCTOS.forEach(p => { p.fotos = p.fotos.map(f => "../" + f); });</script>
-<script src="../assets/tienda.js?v=2"></script>
+<script src="../assets/tienda.js?v=3"></script>
 <script>
 (function () {
   const C = window.CARTO;
