@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Cartography · Lo que te gusta de USA, en Querétaro</title>
+<meta name="description" content="Productos de Estados Unidos entregados en Querétaro. Ordena en línea y recibe tu pedido en tu punto de entrega.">
+<meta name="theme-color" content="#fbf1ec">
+<link rel="icon" href="img/logo-cartography.png">
+<link rel="apple-touch-icon" href="img/icono-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/estilo.css?v=1">
+</head>
+<body>
+
+<header class="barra">
+  <div class="wrap">
+    <a class="logo" href="./" aria-label="Cartography, inicio">
+      <img src="img/logo-cartography.png" alt="">
+      Cartography
+    </a>
+    <a class="mi-pedido" href="pedido/">Mi pedido <span class="n" data-contador>0</span></a>
+  </div>
+</header>
+
+<main>
+  <section class="portada">
+    <svg class="mapa" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" fill="none" stroke="#f0d5c8" stroke-width="1">
+      <path d="M-20 60 C60 20 120 90 200 55 S330 10 420 50"/>
+      <path d="M-20 100 C70 60 130 130 210 95 S340 50 420 90"/>
+      <path d="M-20 140 C80 100 140 170 220 135 S350 90 420 130"/>
+      <path d="M-20 180 C90 140 150 210 230 175 S360 130 420 170"/>
+      <path d="M-20 220 C100 180 160 250 240 215 S370 170 420 210"/>
+      <path d="M-20 260 C110 220 170 290 250 255 S380 210 420 250"/>
+      <path d="M300 40 l40 30 l-25 60" stroke="#d9b8e3" stroke-dasharray="4 5"/>
+      <circle cx="300" cy="40" r="3" fill="#d9b8e3" stroke="none"/>
+      <circle cx="315" cy="130" r="4" fill="#8e5aa8" stroke="none"/>
+    </svg>
+    <div class="wrap">
+      <img class="sello" src="img/logo-cartography.png" alt="Logo de Cartography">
+      <div class="texto">
+      <p class="kicker">De Estados Unidos a Querétaro</p>
+      <h1 class="grande">Lo que te gusta de USA, sin salir de Querétaro.</h1>
+      <p class="lead">Lo compramos e importamos por ti. Tú solo ordenas y lo recibes en tu punto de entrega favorito.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" href="#productos">Ver productos</a>
+        <a class="btn claro" id="pedirAlgo" href="#">¿Buscas algo más?</a>
+      </div>
+      </div>
+      <div class="extra">
+
+      <div class="pasos" style="margin-top:28px">
+        <p class="lbl">Así llega tu pedido</p>
+        <div class="flow" id="flow"></div>
+      </div>
+
+      <div class="cortes" id="cortes"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" id="productos">
+    <div class="wrap">
+      <h2 class="sec">Productos</h2>
+      <p class="sub">Toca un producto para ver qué es, para qué sirve y cuándo te llega.</p>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="seccion" id="preguntas">
+    <div class="wrap" style="max-width:720px">
+      <h2 class="sec">Preguntas frecuentes</h2>
+      <p class="sub">Lo que más nos preguntan antes de ordenar.</p>
+      <details><summary>¿Cómo funciona?</summary><p>Eliges tus productos y nos mandas tu pedido por WhatsApp. Ordenas con una parte del total por transferencia, nosotros lo compramos en Estados Unidos, lo importamos y te lo entregamos en Querétaro. El resto lo pagas al momento de la entrega.</p></details>
+      <details><summary>¿Cuándo me llega?</summary><p>Cada producto te dice hasta qué día puedes pedirlo y la fecha estimada de entrega. Las fechas pueden variar unos días por el proceso de importación; si algo cambia, te avisamos por WhatsApp.</p></details>
+      <details><summary>¿Dónde me lo entregan?</summary><p>En persona, en puntos de Querétaro como Uptown Juriquilla, Urban Center Jurica, Portal Querétaro, UTEQ, Santander de 5 de Febrero y Walmart de Bernardo Quintana. Los domingos también en Plaza Esfera y Arcos. El día y la hora los acordamos por WhatsApp.</p></details>
+      <details><summary>¿Cómo pago?</summary><p>Para ordenar, por transferencia; te damos los datos al enviar tu pedido. El resto lo pagas al recibirlo, en efectivo o por transferencia.</p></details>
+      <details><summary>¿Y si el producto se agota?</summary><p>Si al momento de comprarlo ya no hay, te avisamos y eliges: otro producto o la devolución completa de lo que pagaste.</p></details>
+      <details><summary>¿Puedo cambiar o cancelar mi pedido?</summary><p>Como cada pedido se compra especialmente para ti, una vez comprado no hay cambios ni cancelaciones por talla o gusto. Si algo llega dañado, lo revisamos contigo.</p></details>
+      <details><summary>¿Qué pasa si no puedo recogerlo?</summary><p>Tienes 15 días para recibirlo desde que te avisamos que llegó. Después, el producto se pone a la venta y lo que pagaste para ordenar no se devuelve.</p></details>
+      <details><summary>¿Puedo pedir algo que no está aquí?</summary><p>Sí. Mándanos el link o una foto por WhatsApp y te decimos cuánto te queda en Querétaro.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="wrap">Cartography · Querétaro</div>
+</footer>
+
+<div class="velo" id="velo" hidden>
+  <div class="hoja" role="dialog" aria-modal="true" aria-labelledby="hTitulo" id="hoja"></div>
+</div>
+<div class="aviso" id="aviso" hidden role="status"></div>
+
+<script src="assets/productos.js?v=1"></script>
+<script src="assets/tienda.js?v=1"></script>
+<script>
+(function () {
+  const C = window.CARTO;
+  const sv = 'fill="none" stroke="#8e5aa8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"';
+  const ICO = {
+    bolsa: '<svg ' + sv + '><path d="M6 8h12l-1 12H7z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>',
+    avion: '<svg ' + sv + '><path d="M10.5 3.8a1.5 1.5 0 0 1 3 0V9l7 4v2l-7-2v4.5l2 1.5v1.5l-3.5-1-3.5 1V19l2-1.5V13l-7 2v-2l7-4z"/></svg>',
+    caja: '<svg ' + sv + '><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5"/><path d="M12 12v9"/><path d="M12 12L4 7.5"/></svg>',
+    regalo: '<svg ' + sv + '><path d="M4 11h16v9H4z"/><path d="M3 7h18v4H3z"/><path d="M12 7v13"/><path d="M12 7c-2-3-5-3-5-1s3 1 5 1c2 0 5 1 5-1s-3-2-5 1"/></svg>'
+  };
+  const USO = { luna: "☾", brillo: "✦" };
+  const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+  // Pasos
+  const pasos = [["bolsa", "Haces tu pedido"], ["avion", "Viaja a Querétaro"], ["caja", "Se importa"], ["regalo", "Te lo entregamos"]];
+  document.getElementById("flow").innerHTML = pasos.map((p, i) =>
+    (i ? '<div class="dash"></div>' : "") + '<div class="st"><div class="ic">' + ICO[p[0]] + "</div>" + p[1] + "</div>").join("");
+
+  // Cortes
+  const hoy = C.hoyISO();
+  const prox = C.proximoCruce();
+  const vigentes = C.CRUCES.filter(c => hoy <= c.corteMismoDia);
+  document.getElementById("cortes").innerHTML = vigentes.length ? vigentes.map(c => {
+    const d = C.fecha(c.corteMismoDia);
+    return '<div class="corte' + (prox && c.cruce === prox.cruce ? " prox" : "") + '"><div class="dia"><b>' + d.getDate() + "</b><span>" +
+      ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"][d.getMonth()] + "</span></div><p>" +
+      (prox && c.cruce === prox.cruce ? '<strong>Próximo corte</strong><span class="tag">Ordena a tiempo</span><br>' : "<strong>Corte</strong><br>") +
+      "Entrega estimada: " + esc(c.entrega) + (c.nota ? " · " + esc(c.nota) : "") + "</p></div>";
+  }).join("") : '<div class="corte"><p><strong>Pronto anunciamos los siguientes cortes.</strong><br>Mientras, escríbenos por WhatsApp.</p></div>';
+
+  // ¿Buscas algo más?
+  document.getElementById("pedirAlgo").href = "https://wa.me/52" + C.WHATSAPP + "?text=" + encodeURIComponent("¡Hola Cartography! Busco un producto que no vi en la tienda: ");
+  document.getElementById("pedirAlgo").target = "_blank";
+
+  // Catálogo
+  const grid = document.getElementById("grid");
+  grid.innerHTML = C.PRODUCTOS.map(p =>
+    '<button type="button" class="prod" data-id="' + esc(p.id) + '"><div class="foto"><img loading="lazy" src="' + esc(p.fotos[0]) + '" alt="' + esc(p.nombre) + '">' +
+    (p.badge ? '<span class="badge">' + esc(p.badge) + "</span>" : "") + '</div><div class="info"><span class="marca">' + esc(p.marca) +
+    '</span><span class="nom">' + esc(p.nombre) + '</span><span class="pre">' + C.dinero(p.precio) + "</span></div></button>").join("");
+  grid.addEventListener("click", e => { const b = e.target.closest(".prod"); if (b) abrir(b.dataset.id); });
+
+  // Vista completa
+  const velo = document.getElementById("velo"), hoja = document.getElementById("hoja");
+  let cant = 1, actual = null;
+  function abrir(id) {
+    const p = C.porId(id); if (!p) return;
+    actual = p; cant = 1;
+    const cr = C.cruceDe(p);
+    const ordena = C.pagoInicial(p.precio);
+    hoja.innerHTML =
+      '<button class="cerrar" type="button" aria-label="Cerrar">×</button>' +
+      '<div class="foto"><img src="' + esc(p.fotos[0]) + '" alt="' + esc(p.nombre) + '">' + (p.badge ? '<span class="tag">' + esc(p.badge) + "</span>" : "") + '<span class="ref">Foto de referencia</span></div>' +
+      '<div class="cuerpo"><p class="marca">' + esc(p.marca) + '</p><h3 id="hTitulo">' + esc(p.nombre) + "</h3>" +
+      "<h4>¿Qué es?</h4><p class=\"t\">" + esc(p.que) + "</p>" +
+      "<h4>¿Para qué sirve?</h4><p class=\"t\">" + esc(p.para) + "</p>" +
+      (p.usos && p.usos.length ? '<div class="usos">' + p.usos.map(u => '<div><span class="i">' + (USO[u.icono] || "•") + "</span><span><b>" + esc(u.titulo) + ":</b> " + esc(u.texto) + "</span></div>").join("") + "</div>" : "") +
+      (p.ideal ? '<p class="ideal"><b>Ideal para</b> ' + esc(p.ideal) + "</p>" : "") +
+      '<div class="precio"><span class="p">' + C.dinero(p.precio) + '</span><span class="a">Ordena con ' + C.dinero(ordena) + "</span></div>" +
+      '<p class="chico">Y el resto, al momento de la entrega.</p>' +
+      (cr ? '<div class="fechas">Pide antes del <b>' + C.bonita(cr.corte, true) + "</b><br>Entrega estimada en Querétaro: " + esc(cr.entrega) + "</div>" +
+            '<p class="nota">Fecha estimada. Puede variar unos días por el proceso de importación.</p>'
+          : '<div class="fechas">Ya cerramos los cortes de este mes. Escríbenos y te decimos cuándo es el siguiente.</div><p class="nota"></p>') +
+      '<div class="cant"><button type="button" data-c="-1" aria-label="Quitar uno">−</button><span id="cant">1</span><button type="button" data-c="1" aria-label="Agregar uno">+</button></div>' +
+      '<button class="btn full" type="button" id="agregar">Agregar a mi pedido</button>' +
+      '<div class="pasos" style="margin-top:16px;border:0;padding:14px 0 0;border-top:1px solid var(--linea);border-radius:0"><p class="lbl">Así llega tu pedido</p><div class="flow">' +
+      document.getElementById("flow").innerHTML + "</div></div></div>";
+    velo.hidden = false; document.body.style.overflow = "hidden";
+    hoja.scrollTop = 0;
+    hoja.querySelector(".cerrar").focus();
+    history.replaceState(null, "", "#p=" + p.id);
+  }
+  function cerrar() { velo.hidden = true; document.body.style.overflow = ""; actual = null; history.replaceState(null, "", location.pathname); }
+  velo.addEventListener("click", e => {
+    if (e.target === velo || e.target.closest(".cerrar")) return cerrar();
+    const c = e.target.closest("[data-c]");
+    if (c) { cant = Math.max(1, Math.min(20, cant + Number(c.dataset.c))); hoja.querySelector("#cant").textContent = cant; return; }
+    if (e.target.closest("#agregar") && actual) {
+      C.agregar(actual.id, cant); cerrar();
+      const a = document.getElementById("aviso");
+      a.innerHTML = "<span>Agregado a tu pedido</span><a href=\"pedido/\">Ver mi pedido</a>";
+      a.hidden = false; clearTimeout(window.__t); window.__t = setTimeout(() => { a.hidden = true; }, 5000);
+    }
+  });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !velo.hidden) cerrar(); });
+  const m = /#p=([\w-]+)/.exec(location.hash); if (m) abrir(m[1]);
+})();
+</script>
+</body>
+</html>
