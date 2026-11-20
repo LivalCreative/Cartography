@@ -202,3 +202,7 @@ label.campo textarea{height:80px;padding:10px 12px;resize:vertical}
 .chip:hover{border-color:var(--rosa)}
 .seccion-cat{margin:0 0 30px;scroll-margin-top:80px}
 h3.cat{font-family:var(--titulo);font-weight:800;font-size:21px;margin:0 0 12px;color:var(--rosa2)}
+
+/* Segunda foto al pasar el mouse (computadora) */
+.prod .foto img.alt{position:absolute;inset:0;opacity:0;transition:opacity .25s ease;background:#fff}
+@media(hover:hover){.prod:hover .foto img.alt{opacity:1}}
