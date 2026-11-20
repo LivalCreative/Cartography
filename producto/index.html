@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Producto · Cartography</title>
+<meta name="theme-color" content="#fbf1ec">
+<link rel="icon" href="../img/logo-cartography.png">
+<link rel="apple-touch-icon" href="../img/icono-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="../assets/estilo.css?v=2">
+</head>
+<body>
+
+<header class="barra">
+  <div class="wrap">
+    <a class="logo" href="../" aria-label="Cartography, inicio"><img src="../img/logo-cartography.png" alt="">Cartography</a>
+    <a class="mi-pedido" href="../pedido/">Mi pedido <span class="n" data-contador>0</span></a>
+  </div>
+</header>
+
+<main class="wrap ficha-wrap">
+  <nav class="migas" aria-label="Ruta"><a href="../#productos">Productos</a><span aria-hidden="true">›</span><span id="migaCat"></span></nav>
+
+  <div id="noEncontrado" class="caja vacio" hidden>
+    <p style="margin:0 0 14px">No encontramos este producto. Puede que ya no esté disponible.</p>
+    <a class="btn" href="../#productos">Ver productos</a>
+  </div>
+
+  <article class="ficha" id="ficha" hidden>
+    <div class="galeria">
+      <div class="principal">
+        <img id="fotoGrande" src="" alt="">
+        <span class="tag" id="badge" hidden></span>
+        <span class="ref">Foto de referencia</span>
+      </div>
+      <div class="miniaturas" id="miniaturas"></div>
+    </div>
+
+    <div class="detalle">
+      <p class="marca" id="marca"></p>
+      <h1 id="nombre"></h1>
+
+      <div class="precio"><span class="p" id="precio"></span><span class="a" id="ordena"></span></div>
+      <p class="chico">Y el resto, al momento de la entrega.</p>
+
+      <div class="fechas" id="fechas"></div>
+      <p class="nota" id="nota"></p>
+
+      <div class="comprar">
+        <div class="cant"><button type="button" data-c="-1" aria-label="Quitar uno">−</button><span id="cant">1</span><button type="button" data-c="1" aria-label="Agregar uno">+</button></div>
+        <button class="btn" type="button" id="agregar">Agregar a mi pedido</button>
+      </div>
+
+      <section class="bloque">
+        <h2>¿Qué es?</h2>
+        <p id="que"></p>
+      </section>
+      <section class="bloque">
+        <h2>¿Para qué sirve?</h2>
+        <p id="para"></p>
+        <div class="usos" id="usos"></div>
+      </section>
+      <section class="bloque" id="idealBloque">
+        <h2>Ideal para</h2>
+        <p id="ideal"></p>
+      </section>
+
+      <div class="pasos ficha-pasos">
+        <p class="lbl">Así llega tu pedido</p>
+        <div class="flow" id="flow"></div>
+      </div>
+    </div>
+  </article>
+
+  <section class="seccion" id="masBloque" hidden>
+    <h2 class="sec" style="font-size:22px">También te puede gustar</h2>
+    <div class="grid" id="mas"></div>
+  </section>
+</main>
+
+<footer class="pie"><div class="wrap">Cartography · Querétaro</div></footer>
+<div class="aviso" id="aviso" hidden role="status"></div>
+
+<script src="../assets/productos.js?v=2"></script>
+<script>window.CARTO_PRODUCTOS.forEach(p => { p.fotos = p.fotos.map(f => "../" + f); });</script>
+<script src="../assets/tienda.js?v=2"></script>
+<script src="../assets/comun.js?v=2"></script>
+<script>
+(function () {
+  const C = window.CARTO, U = window.CARTO_UI, esc = U.esc, $ = id => document.getElementById(id);
+  const id = new URLSearchParams(location.search).get("id");
+  const p = C.porId(id);
+  $("flow").innerHTML = U.pasosHTML();
+  if (!p) { $("noEncontrado").hidden = false; $("migaCat").textContent = "No encontrado"; return; }
+
+  document.title = p.nombre + " · " + p.marca + " · Cartography";
+  $("ficha").hidden = false;
+  $("migaCat").textContent = p.categoria || p.marca;
+  $("fotoGrande").src = p.fotos[0]; $("fotoGrande").alt = p.nombre;
+  if (p.badge) { $("badge").textContent = p.badge; $("badge").hidden = false; }
+  if (p.fotos.length > 1) {
+    $("miniaturas").innerHTML = p.fotos.map((f, i) => '<button type="button" data-f="' + i + '"' + (i ? "" : ' aria-current="true"') + '><img src="' + esc(f) + '" alt="Foto ' + (i + 1) + '"></button>').join("");
+    $("miniaturas").addEventListener("click", e => {
+      const b = e.target.closest("[data-f]"); if (!b) return;
+      $("fotoGrande").src = p.fotos[+b.dataset.f];
+      $("miniaturas").querySelectorAll("button").forEach(x => x.removeAttribute("aria-current"));
+      b.setAttribute("aria-current", "true");
+    });
+  }
+  $("marca").textContent = p.marca;
+  $("nombre").textContent = p.nombre;
+  $("precio").textContent = C.dinero(p.precio);
+  $("ordena").textContent = "Ordena con " + C.dinero(C.pagoInicial(p.precio));
+  const cr = C.cruceDe(p);
+  if (cr) {
+    $("fechas").innerHTML = "Pide antes del <b>" + C.bonita(cr.corte, true) + "</b><br>Entrega estimada en Querétaro: " + esc(cr.entrega);
+    $("nota").textContent = "Fecha estimada. Puede variar unos días por el proceso de importación.";
+  } else {
+    $("fechas").textContent = "Ya cerramos los cortes de este mes. Escríbenos y te decimos cuándo es el siguiente.";
+  }
+  $("que").textContent = p.que || "";
+  $("para").textContent = p.para || "";
+  $("usos").innerHTML = (p.usos || []).map(u => '<div><span class="i">' + (U.USO[u.icono] || "•") + "</span><span><b>" + esc(u.titulo) + ":</b> " + esc(u.texto) + "</span></div>").join("");
+  if (p.ideal) $("ideal").textContent = p.ideal.charAt(0).toUpperCase() + p.ideal.slice(1); else $("idealBloque").hidden = true;
+
+  let cant = 1;
+  document.querySelector(".cant").addEventListener("click", e => {
+    const b = e.target.closest("[data-c]"); if (!b) return;
+    cant = Math.max(1, Math.min(20, cant + Number(b.dataset.c))); $("cant").textContent = cant;
+  });
+  $("agregar").addEventListener("click", () => {
+    C.agregar(p.id, cant);
+    U.aviso("Agregado a tu pedido", "../pedido/", "Ver mi pedido");
+  });
+
+  const otros = C.PRODUCTOS.filter(x => x.id !== p.id).slice(0, 6);
+  if (otros.length) { $("masBloque").hidden = false; $("mas").innerHTML = otros.map(x => U.tarjetaHTML(x, "./?id=")).join(""); }
+})();
+</script>
+</body>
+</html>

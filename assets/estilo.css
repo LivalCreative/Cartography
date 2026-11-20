@@ -61,7 +61,8 @@ h2.sec{font-family:var(--titulo);font-weight:800;font-size:28px;margin:0 0 6px}
 /* Catálogo */
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 @media(min-width:760px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}}
-.prod{background:var(--papel);border:1px solid var(--linea);border-radius:16px;overflow:hidden;text-align:left;padding:0;display:flex;flex-direction:column}
+.prod{background:var(--papel);border:1px solid var(--linea);border-radius:16px;overflow:hidden;text-align:left;padding:0;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .15s ease,border-color .15s ease}
+.prod:hover{border-color:var(--rosa);transform:translateY(-2px)}
 .prod .foto{position:relative;background:#fff;aspect-ratio:1/1}
 .prod .foto img{width:100%;height:100%;object-fit:contain}
 .prod .badge{position:absolute;top:8px;left:8px;background:var(--rosaclaro);color:var(--rosa2);font-size:11px;padding:3px 8px;border-radius:8px}
@@ -145,3 +146,30 @@ label.campo textarea{height:80px;padding:10px 12px;resize:vertical}
 @media(min-width:760px){.portada .wrap{display:grid;grid-template-columns:1fr 260px;gap:30px;align-items:center}.portada .sello{width:240px;height:240px;grid-column:2;grid-row:1}.portada .texto{grid-column:1;grid-row:1}.portada .extra{grid-column:1/-1}}
 .aviso a{color:var(--pink)}
 .fechas{background:var(--durazno)}
+
+/* Página de producto */
+.ficha-wrap{padding-top:18px;padding-bottom:30px}
+.migas{font-size:13px;color:var(--suave);display:flex;gap:8px;align-items:center;margin:0 0 16px}
+.migas a{color:var(--rosa2);text-decoration:none;font-weight:600}
+.ficha{display:grid;gap:22px}
+@media(min-width:860px){.ficha{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:44px;align-items:start}.galeria{position:sticky;top:80px}}
+.galeria .principal{position:relative;background:#fff;border:1px solid var(--linea);border-radius:20px;overflow:hidden;aspect-ratio:1/1}
+.galeria .principal img{width:100%;height:100%;object-fit:contain}
+.galeria .tag{position:absolute;top:14px;left:14px;background:var(--rosaclaro);color:var(--rosa2);font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px}
+.galeria .ref{position:absolute;bottom:10px;right:14px;font-size:11px;color:var(--suave)}
+.miniaturas{display:flex;gap:10px;margin-top:10px;overflow-x:auto}
+.miniaturas button{flex:none;width:68px;height:68px;border-radius:12px;border:1px solid var(--linea);background:#fff;padding:4px}
+.miniaturas button[aria-current]{border:2px solid var(--rosa)}
+.miniaturas img{width:100%;height:100%;object-fit:contain}
+.detalle .marca{font-size:13px;color:var(--rosa);font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin:0 0 4px}
+.detalle h1{font-family:var(--titulo);font-weight:800;font-size:clamp(26px,4.4vw,34px);line-height:1.15;margin:0 0 14px}
+.detalle .precio .p{font-size:32px}
+.detalle .precio .a{font-size:15px;font-weight:600;color:var(--rosa2);background:var(--rosaclaro);padding:4px 12px;border-radius:999px}
+.comprar{display:flex;gap:12px;align-items:center;margin:18px 0 8px}
+.comprar .cant{margin:0}
+.comprar .btn{flex:1}
+.bloque{border-top:1px solid var(--linea);padding:18px 0 4px}
+.bloque h2{font-size:15px;font-weight:800;margin:0 0 6px;color:var(--tinta)}
+.bloque p{font-size:15px;color:var(--tinta2);margin:0 0 10px;line-height:1.6}
+.bloque .usos{font-size:14px}
+.ficha-pasos{margin-top:18px}
