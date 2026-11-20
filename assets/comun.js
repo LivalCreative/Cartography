@@ -27,7 +27,7 @@
     { id: "holidays", nombre: "Holidays", sub: "Dulces, chocolates y antojos de temporada que solo salen en Navidad en Estados Unidos.",
       grupos: ["Chocolates", "Gomitas y dulces", "Galletas, cereal y botanas", "Café, té y chocolate caliente", "Bebidas"], portada: ["t1011368150"] },
     { id: "belleza", nombre: "Belleza y cuidado", sub: "Skincare, kits de regalo, cuidado del bebé y sets para él de las marcas favoritas de Estados Unidos.",
-      grupos: ["Kits de skincare", "Cuidado facial", "Cuerpo y baño", "Bebé", "Para él", "Labios y manos"], portada: ["t93592823", "t95248090", "t92909421"] },
+      grupos: ["Kits de skincare", "Cuidado facial", "Cuerpo y baño", "Bebé", "Para él", "Labios y manos"], portada: ["t93592823"], fotosGrupo: { "Cuerpo y baño": "t95248090", "Kits de skincare": "t95251971", "Para él": "t1011891866" } },
   ];
   const catPorId = id => CATEGORIAS.find(c => c.id === id);
   const catDe = p => CATEGORIAS.find(c => c.nombre === (p.categoria || "Holidays"));

@@ -222,7 +222,7 @@ h3.cat{font-family:var(--titulo);font-weight:800;font-size:21px;margin:0 0 12px;
 .circulos.grandes .bola{width:160px;height:160px}
 .circulos.grandes .nombre{font-size:17px;font-weight:800}
 @media (min-width:900px){
-  .circulo{width:150px}.circulo .bola{width:140px;height:140px}.circulo .nombre{font-size:15px}
+  .circulo{width:128px}.circulo .bola{width:120px;height:120px}.circulo .nombre{font-size:15px}
   .circulos.grandes .circulo{width:230px}.circulos.grandes .bola{width:220px;height:220px}.circulos.grandes .nombre{font-size:19px}
 }
 .cat-titulo{text-align:center;font-family:var(--titulo);font-weight:800;font-size:32px;margin:6px 0 4px;color:var(--tinta)}
