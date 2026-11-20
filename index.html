@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="assets/estilo.css?v=3">
+<link rel="stylesheet" href="assets/estilo.css?v=4">
 </head>
 <body>
 
@@ -66,7 +66,8 @@
     <div class="wrap">
       <h2 class="sec">Productos</h2>
       <p class="sub">Toca un producto para ver qué es, para qué sirve y cuándo te llega.</p>
-      <div class="grid" id="grid"></div>
+      <div class="chips" id="chips"></div>
+      <div id="grid"></div>
     </div>
   </section>
 
@@ -94,9 +95,9 @@
 
 <div class="aviso" id="aviso" hidden role="status"></div>
 
-<script src="assets/productos.js?v=3"></script>
-<script src="assets/tienda.js?v=3"></script>
-<script src="assets/comun.js?v=3"></script>
+<script src="assets/productos.js?v=4"></script>
+<script src="assets/tienda.js?v=4"></script>
+<script src="assets/comun.js?v=4"></script>
 <script>
 (function () {
   const C = window.CARTO, U = window.CARTO_UI, esc = U.esc;
@@ -119,7 +120,15 @@
   pa.href = "https://wa.me/52" + C.WHATSAPP + "?text=" + encodeURIComponent("¡Hola Cartography! Busco un producto que no vi en la tienda: ");
   pa.target = "_blank"; pa.rel = "noopener";
 
-  document.getElementById("grid").innerHTML = C.PRODUCTOS.map(p => U.tarjetaHTML(p, "producto/?id=")).join("");
+  // Productos agrupados por sección, en el orden de SECCIONES
+  const SECCIONES = ["Holidays", "Belleza"];
+  const secs = SECCIONES.concat([...new Set(C.PRODUCTOS.map(p => p.categoria))].filter(s => !SECCIONES.includes(s)))
+    .map(s => ({ s, ps: C.PRODUCTOS.filter(p => p.categoria === s) })).filter(x => x.ps.length);
+  const slug = s => "sec-" + s.toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/g, "-");
+  document.getElementById("chips").innerHTML = secs.length > 1 ? secs.map(x => '<a class="chip" href="#' + slug(x.s) + '">' + esc(x.s) + ' <span>' + x.ps.length + "</span></a>").join("") : "";
+  document.getElementById("grid").innerHTML = secs.map(x =>
+    '<div class="seccion-cat" id="' + slug(x.s) + '"><h3 class="cat">' + esc(x.s) + '</h3><div class="grid">' +
+    x.ps.map(p => U.tarjetaHTML(p, "producto/?id=")).join("") + "</div></div>").join("");
 })();
 </script>
 </body>

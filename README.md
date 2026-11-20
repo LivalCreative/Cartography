@@ -10,7 +10,8 @@ Sitio estático publicado con GitHub Pages.
 - `assets/tienda.js` — WhatsApp, cuenta para transferencia, fechas de cruce y corte, puntos de entrega y carrito.
 - `assets/comun.js` — piezas compartidas: pasos de "Así llega tu pedido", tarjetas de producto y avisos.
 - `assets/estilo.css` — estilos de la marca.
-- `img/` — logo y fotos de productos.
+- `img/` — logo y fotos de productos propias.
+- Las fotos de la sección Holidays se cargan desde la tienda de origen como foto de referencia; cambiarlas por fotos propias cuando lleguen los productos.
 
 Lo privado del negocio (precios en dólares, links de compra, fórmula de costos y márgenes) va en Google Drive, carpeta "Tienda Cartography". Este repositorio es público: nunca subir esos datos ni datos de clientas.
 
