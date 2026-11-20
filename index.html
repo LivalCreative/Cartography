@@ -111,7 +111,7 @@
   const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
   // Pasos
-  const pasos = [["bolsa", "Haces tu pedido"], ["avion", "Viaja a Querétaro"], ["caja", "Se importa"], ["regalo", "Te lo entregamos"]];
+  const pasos = [["bolsa", "Haces tu pedido"], ["avion", "Viaja de USA a MEX"], ["caja", "Se importa"], ["regalo", "Te lo entregamos"]];
   document.getElementById("flow").innerHTML = pasos.map((p, i) =>
     (i ? '<div class="dash"></div>' : "") + '<div class="st"><div class="ic">' + ICO[p[0]] + "</div>" + p[1] + "</div>").join("");
 
