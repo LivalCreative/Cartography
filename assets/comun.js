@@ -25,5 +25,9 @@
     a.innerHTML = "<span>" + esc(texto) + "</span>" + (href ? '<a href="' + href + '">' + esc(accion) + "</a>" : "");
     a.hidden = false; clearTimeout(window.__avisoT); window.__avisoT = setTimeout(() => { a.hidden = true; }, 5000);
   }
+  document.addEventListener("DOMContentLoaded", () => {
+    const b = document.getElementById("banda"), pc = C.proximoCruce && C.proximoCruce();
+    if (b && pc) b.innerHTML = "Edición navideña · Pide antes del <b>" + C.bonita(pc.corteMismoDia) + "</b> y recíbelo del " + esc(pc.entrega);
+  });
   window.CARTO_UI = { esc, pasosHTML, tarjetaHTML, aviso, USO };
 })();

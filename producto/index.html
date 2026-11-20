@@ -11,15 +11,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="../assets/estilo.css?v=4">
+<link rel="stylesheet" href="../assets/estilo.css?v=5">
+<link rel="stylesheet" href="../assets/navidad.css?v=1">
+<script src="../assets/nieve.js?v=2"></script>
 </head>
-<body>
-
+<body class="navidad">
+<div class="banda-navidad" id="banda">Edición navideña · Dulces y antojos de temporada de Estados Unidos</div>
 <header class="barra">
   <div class="wrap">
     <a class="logo" href="../" aria-label="Cartography, inicio"><img src="../img/logo-cartography.png" alt="">Cartography</a>
     <a class="mi-pedido" href="../pedido/">Mi pedido <span class="n" data-contador>0</span></a>
   </div>
+  <div class="luces" aria-hidden="true"><span style="left:1%"></span><span style="left:5%"></span><span style="left:9%"></span><span style="left:13%"></span><span style="left:17%"></span><span style="left:21%"></span><span style="left:25%"></span><span style="left:29%"></span><span style="left:33%"></span><span style="left:37%"></span><span style="left:41%"></span><span style="left:45%"></span><span style="left:49%"></span><span style="left:53%"></span><span style="left:57%"></span><span style="left:61%"></span><span style="left:65%"></span><span style="left:69%"></span><span style="left:73%"></span><span style="left:77%"></span><span style="left:81%"></span><span style="left:85%"></span><span style="left:89%"></span><span style="left:93%"></span><span style="left:97%"></span></div>
 </header>
 
 <main class="wrap ficha-wrap">
@@ -82,13 +85,13 @@
   </section>
 </main>
 
-<footer class="pie"><div class="wrap">Cartography · Querétaro</div></footer>
+<footer class="pie"><div class="wrap"><p class="felices">Felices fiestas</p>Cartography · Querétaro</div></footer>
 <div class="aviso" id="aviso" hidden role="status"></div>
 
-<script src="../assets/productos.js?v=4"></script>
+<script src="../assets/productos.js?v=5"></script>
 <script>window.CARTO_PRODUCTOS.forEach(p => { p.fotos = p.fotos.map(f => /^https?:/.test(f) ? f : "../" + f); });</script>
-<script src="../assets/tienda.js?v=4"></script>
-<script src="../assets/comun.js?v=4"></script>
+<script src="../assets/tienda.js?v=5"></script>
+<script src="../assets/comun.js?v=5"></script>
 <script>
 (function () {
   const C = window.CARTO, U = window.CARTO_UI, esc = U.esc, $ = id => document.getElementById(id);
@@ -99,7 +102,7 @@
 
   document.title = p.nombre + " · " + p.marca + " · Cartography";
   $("ficha").hidden = false;
-  $("migaCat").textContent = p.categoria || p.marca;
+  $("migaCat").textContent = (p.categoria ? p.categoria + (p.grupo ? " › " + p.grupo : "") : p.marca);
   $("fotoGrande").src = p.fotos[0]; $("fotoGrande").alt = p.nombre;
   if (p.badge) { $("badge").textContent = p.badge; $("badge").hidden = false; }
   if (p.fotos.length > 1) {
@@ -137,7 +140,7 @@
     U.aviso("Agregado a tu pedido", "../pedido/", "Ver mi pedido");
   });
 
-  const otros = C.PRODUCTOS.filter(x => x.id !== p.id).slice(0, 6);
+  const otros = C.PRODUCTOS.filter(x => x.id !== p.id && x.grupo === p.grupo).sort(() => Math.random() - .5).slice(0, 4);
   if (otros.length) { $("masBloque").hidden = false; $("mas").innerHTML = otros.map(x => U.tarjetaHTML(x, "./?id=")).join(""); }
 })();
 </script>

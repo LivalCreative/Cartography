@@ -1,0 +1,28 @@
+/* Tema navideño de temporada. Para quitarlo: borra el <link> de este archivo, el <script> de nieve.js
+   y los elementos con clase "luces" en cada página. */
+#nieve{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:40}
+
+/* Luces debajo de la barra */
+.luces{position:absolute;left:0;right:0;bottom:-11px;height:22px;overflow:hidden;pointer-events:none}
+.luces::before{content:"";position:absolute;left:-10px;right:-10px;top:-12px;height:20px;border-bottom:1.5px solid #5d6b4f;border-radius:0 0 50% 50%/0 0 100% 100%;opacity:.55}
+.luces span{position:absolute;top:5px;width:9px;height:13px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;animation:brillo 2.4s ease-in-out infinite}
+.luces span::before{content:"";position:absolute;left:2px;top:-4px;width:5px;height:4px;border-radius:1px;background:#5d6b4f}
+.luces span:nth-child(4n+1){background:#e05561;box-shadow:0 0 8px 2px rgba(224,85,97,.55)}
+.luces span:nth-child(4n+2){background:#f5c451;box-shadow:0 0 8px 2px rgba(245,196,81,.55);animation-delay:.6s}
+.luces span:nth-child(4n+3){background:#4fa36b;box-shadow:0 0 8px 2px rgba(79,163,107,.55);animation-delay:1.2s}
+.luces span:nth-child(4n+4){background:#a77bc9;box-shadow:0 0 8px 2px rgba(167,123,201,.55);animation-delay:1.8s}
+@keyframes brillo{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* Detalles de temporada */
+.copo{display:inline-block;width:1em;height:1em;vertical-align:-.12em;color:var(--rosa)}
+.kicker .copo{color:var(--rosa2)}
+h2.sec .copo,h3.cat .copo{width:.8em;height:.8em;margin-left:6px;opacity:.75}
+.banda-navidad{background:#3e2c47;color:#fbf1ec;text-align:center;font-size:13px;font-weight:700;padding:8px 14px;letter-spacing:.01em}
+.banda-navidad b{color:#f5c451}
+.prod{position:relative}
+.prod .foto::after{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:radial-gradient(circle at 8px -2px,#fff 7px,transparent 7.5px) 0 0/16px 10px repeat-x;opacity:.9}
+.pie .felices{font-family:var(--firma);font-size:26px;color:var(--rosa);margin:0 0 4px}
+
+@media (prefers-reduced-motion: reduce){
+  .luces span{animation:none}
+}
