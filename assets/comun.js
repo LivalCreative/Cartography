@@ -32,6 +32,8 @@
       grupos: ["LEGO", "Peluches", "Squishies y antiestrés", "Manualidades y arte", "Juegos y coleccionables", "Juguetes y playsets", "Accesorios"], portada: ["t1006979445"], fotosGrupo: { "LEGO": "t95046299" } },
     { id: "accesorios", nombre: "Accesorios", sub: "Broches, diademas, pinzas y todo para peinar a las niñas, con los diseños de Cat & Jack de Target.",
       grupos: ["Para el cabello", "Navideños"], portada: ["t95118563"], fotosGrupo: { "Navideños": "t95294219" } },
+    { id: "loncheras", nombre: "Loncheras", sub: "Loncheras Bentgo para niños y adultos, termos y contenedores para llevar la comida a donde sea.",
+      grupos: ["Para niños", "Para adultos", "Contenedores y accesorios"], portada: ["t76556680"], fotosGrupo: { "Para adultos": "t94858670" } },
   ];
   const catPorId = id => CATEGORIAS.find(c => c.id === id);
   const catDe = p => CATEGORIAS.find(c => c.nombre === (p.categoria || "Holidays"));
