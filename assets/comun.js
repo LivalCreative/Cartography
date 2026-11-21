@@ -30,6 +30,8 @@
       grupos: ["Kits de skincare", "Cuidado facial", "Cuerpo y baño", "Bebé", "Para él", "Labios y manos"], portada: ["t93592823"], fotosGrupo: { "Cuerpo y baño": "t95248090", "Kits de skincare": "t95251971", "Para él": "t1011891866" } },
     { id: "juguetes", nombre: "Juguetes", sub: "LEGO, peluches, squishies, manualidades y los juguetes más pedidos de Estados Unidos, para Navidad y Reyes.",
       grupos: ["LEGO", "Peluches", "Squishies y antiestrés", "Manualidades y arte", "Juegos y coleccionables", "Juguetes y playsets", "Accesorios"], portada: ["t1006979445"], fotosGrupo: { "LEGO": "t95046299" } },
+    { id: "accesorios", nombre: "Accesorios", sub: "Broches, diademas, pinzas y todo para peinar a las niñas, con los diseños de Cat & Jack de Target.",
+      grupos: ["Para el cabello", "Navideños"], portada: ["t95118563"], fotosGrupo: { "Navideños": "t95294219" } },
   ];
   const catPorId = id => CATEGORIAS.find(c => c.id === id);
   const catDe = p => CATEGORIAS.find(c => c.nombre === (p.categoria || "Holidays"));
