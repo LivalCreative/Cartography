@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="../assets/estilo.css?v=10">
+<link rel="stylesheet" href="../assets/estilo.css?v=11">
 <link rel="stylesheet" href="../assets/navidad.css?v=5">
 <script src="../assets/nieve.js?v=3"></script>
 </head>
@@ -34,6 +34,10 @@
       <div class="circulos" id="subcats"></div>
       <h2 class="sec" id="tituloGrid">Todo <svg class="copo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M4.2 6.5l15.6 9M4.2 17.5l15.6-9M9.5 3.5 12 6l2.5-2.5M9.5 20.5 12 18l2.5 2.5M3 9.7l3.4.9-.9 3.4M21 14.3l-3.4-.9.9-3.4M3 14.3l3.4-.9-.9-3.4M21 9.7l-3.4.9.9 3.4"/></svg></h2>
       <p class="sub" id="sub"></p>
+      <div class="filtros" id="filtros">
+        <label>Ordenar por <select id="orden"><option value="">Recomendados</option><option value="asc">Menor precio</option><option value="desc">Mayor precio</option><option value="az">Nombre (A–Z)</option></select></label>
+        <label>Precio <select id="rango"><option value="">Todos</option><option value="0-200">Hasta $200</option><option value="200-500">$200 a $500</option><option value="500-1000">$500 a $1,000</option><option value="1000-99999">Más de $1,000</option></select></label>
+      </div>
       <div id="grid"></div>
       <div id="noEncontrado" class="caja vacio" hidden>
         <p style="margin:0 0 14px">No encontramos esta categoría.</p>
@@ -80,14 +84,27 @@
     grupos.map(x => U.circuloHTML(base + "&g=" + slug(x), U.fotoGrupo(c, x), x, x === g)).join("");
 
   const mostrar = g ? [g] : grupos;
-  const n = ps.filter(p => !g || p.grupo === g).length;
+  const base0 = ps.filter(p => !g || p.grupo === g);
   $("tituloGrid").firstChild.textContent = (g ? g : "Todo en " + c.nombre) + " ";
-  $("sub").textContent = n + " productos. Toca uno para ver qué es y cuándo te llega.";
-  $("grid").innerHTML = mostrar.map(x => {
-    const lista = ps.filter(p => p.grupo === x);
-    return '<div class="seccion-cat">' + (g ? "" : '<h3 class="cat">' + esc(x) + "</h3>") + '<div class="grid">' +
-      lista.map(p => U.tarjetaHTML(p, "../producto/?id=")).join("") + "</div></div>";
-  }).join("");
+  function pinta() {
+    const orden = $("orden").value, rango = $("rango").value;
+    let lista = base0;
+    if (rango) { const [mn, mx] = rango.split("-").map(Number); lista = lista.filter(p => p.precio >= mn && p.precio <= mx); }
+    $("sub").textContent = lista.length + " productos. Toca uno para ver qué es y cuándo te llega.";
+    if (!lista.length) { $("grid").innerHTML = '<p class="sub">No hay productos en ese rango de precio.</p>'; return; }
+    if (orden) {
+      const cmp = orden === "asc" ? (x, y) => x.precio - y.precio : orden === "desc" ? (x, y) => y.precio - x.precio : (x, y) => (x.marca + " " + x.nombre).localeCompare(y.marca + " " + y.nombre, "es");
+      $("grid").innerHTML = '<div class="seccion-cat"><div class="grid">' + lista.slice().sort(cmp).map(p => U.tarjetaHTML(p, "../producto/?id=")).join("") + "</div></div>";
+      return;
+    }
+    $("grid").innerHTML = mostrar.map(x => {
+      const l = lista.filter(p => p.grupo === x); if (!l.length) return "";
+      return '<div class="seccion-cat">' + (g ? "" : '<h3 class="cat">' + esc(x) + "</h3>") + '<div class="grid">' +
+        l.map(p => U.tarjetaHTML(p, "../producto/?id=")).join("") + "</div></div>";
+    }).join("");
+  }
+  $("orden").addEventListener("change", pinta); $("rango").addEventListener("change", pinta);
+  pinta();
 })();
 </script>
 </body>
