@@ -66,7 +66,7 @@
   if (!otras.length) $("otras").hidden = true;
   if (!c) { $("noEncontrado").hidden = false; $("tituloGrid").hidden = true; return; }
 
-  const slug = s => s.toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const slug = s => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   const ps = U.productosDe(c);
   const grupos = c.grupos.concat([...new Set(ps.map(p => p.grupo).filter(Boolean))].filter(g => !c.grupos.includes(g))).filter(g => ps.some(p => p.grupo === g));
   const g = grupos.find(x => slug(x) === q.get("g"));

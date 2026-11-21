@@ -104,7 +104,7 @@
   document.title = p.nombre + " · " + p.marca + " · Cartography";
   $("ficha").hidden = false;
   const cat = U.catDe(p);
-  $("migaCat").innerHTML = cat ? '<a href="../categoria/?c=' + cat.id + '">' + esc(cat.nombre) + "</a>" + (p.grupo ? ' <span aria-hidden="true">›</span> <a href="../categoria/?c=' + cat.id + "&g=" + p.grupo.toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") + '">' + esc(p.grupo) + "</a>" : "") : esc(p.marca);
+  $("migaCat").innerHTML = cat ? '<a href="../categoria/?c=' + cat.id + '">' + esc(cat.nombre) + "</a>" + (p.grupo ? ' <span aria-hidden="true">›</span> <a href="../categoria/?c=' + cat.id + "&g=" + p.grupo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") + '">' + esc(p.grupo) + "</a>" : "") : esc(p.marca);
   $("fotoGrande").src = p.fotos[0]; $("fotoGrande").alt = p.nombre;
   if (p.badge) { $("badge").textContent = p.badge; $("badge").hidden = false; }
   if (p.fotos.length > 1) {
