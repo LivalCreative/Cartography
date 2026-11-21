@@ -11,8 +11,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="../assets/estilo.css?v=11">
-<link rel="stylesheet" href="../assets/navidad.css?v=5">
+<link rel="stylesheet" href="../assets/estilo.css?v=14">
+<link rel="stylesheet" href="../assets/navidad.css?v=6">
 <script src="../assets/nieve.js?v=3"></script>
 </head>
 <body class="navidad">
@@ -35,8 +35,10 @@
       <h2 class="sec" id="tituloGrid">Todo <svg class="copo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M4.2 6.5l15.6 9M4.2 17.5l15.6-9M9.5 3.5 12 6l2.5-2.5M9.5 20.5 12 18l2.5 2.5M3 9.7l3.4.9-.9 3.4M21 14.3l-3.4-.9.9-3.4M3 14.3l3.4-.9-.9-3.4M21 9.7l-3.4.9.9 3.4"/></svg></h2>
       <p class="sub" id="sub"></p>
       <div class="filtros" id="filtros">
-        <label>Ordenar por <select id="orden"><option value="">Recomendados</option><option value="asc">Menor precio</option><option value="desc">Mayor precio</option><option value="az">Nombre (A–Z)</option></select></label>
-        <label>Precio <select id="rango"><option value="">Todos</option><option value="0-200">Hasta $200</option><option value="200-500">$200 a $500</option><option value="500-1000">$500 a $1,000</option><option value="1000-99999">Más de $1,000</option></select></label>
+        <div class="fila"><span class="et"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 4v16M4 17l3 3 3-3M17 20V4M14 7l3-3 3 3"/></svg>Ordenar</span>
+          <div class="pastillas" data-f="orden"><button type="button" data-v="" aria-pressed="true">Recomendados</button><button type="button" data-v="asc">Menor precio</button><button type="button" data-v="desc">Mayor precio</button><button type="button" data-v="az">A–Z</button></div></div>
+        <div class="fila"><span class="et"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>Precio</span>
+          <div class="pastillas" data-f="rango"><button type="button" data-v="" aria-pressed="true">Todos</button><button type="button" data-v="0-200">Hasta $200</button><button type="button" data-v="200-500">$200 – $500</button><button type="button" data-v="500-1000">$500 – $1,000</button><button type="button" data-v="1000-99999">Más de $1,000</button></div></div>
       </div>
       <div id="grid"></div>
       <div id="noEncontrado" class="caja vacio" hidden>
@@ -87,7 +89,7 @@
   const base0 = ps.filter(p => !g || p.grupo === g);
   $("tituloGrid").firstChild.textContent = (g ? g : "Todo en " + c.nombre) + " ";
   function pinta() {
-    const orden = $("orden").value, rango = $("rango").value;
+    const orden = F.orden, rango = F.rango;
     let lista = base0;
     if (rango) { const [mn, mx] = rango.split("-").map(Number); lista = lista.filter(p => p.precio >= mn && p.precio <= mx); }
     $("sub").textContent = lista.length + " productos. Toca uno para ver qué es y cuándo te llega.";
@@ -103,7 +105,13 @@
         l.map(p => U.tarjetaHTML(p, "../producto/?id=")).join("") + "</div></div>";
     }).join("");
   }
-  $("orden").addEventListener("change", pinta); $("rango").addEventListener("change", pinta);
+  const F = { orden: "", rango: "" };
+  $("filtros").addEventListener("click", e => {
+    const b = e.target.closest("button[data-v]"); if (!b) return;
+    const grupo = b.parentElement; F[grupo.dataset.f] = b.dataset.v;
+    grupo.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+    pinta();
+  });
   pinta();
 })();
 </script>

@@ -119,3 +119,8 @@ h2.sec .copo,h3.cat .copo{width:.8em;height:.8em;margin-left:6px;color:var(--ver
 .navidad .pie .credito p{color:#efe6f2}
 .navidad .pie .credito p a{color:#f7b8c6}
 .navidad .pie .credito img{background:rgba(255,255,255,.92);border-radius:14px;padding:6px 8px;width:92px}
+.navidad .filtros{border:1.5px solid #ead7cd;position:relative;overflow:hidden}
+.navidad .filtros::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:repeating-linear-gradient(135deg,var(--rojo) 0 8px,#fff 8px 16px)}
+.navidad .filtros .et{color:var(--verde2)}
+.navidad .pastillas button:hover{border-color:var(--rojo)}
+.navidad .pastillas button[aria-pressed="true"]{background:var(--rojo);border-color:var(--rojo);box-shadow:0 4px 10px rgba(195,49,61,.28)}
