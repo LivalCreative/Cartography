@@ -56,17 +56,24 @@
 
   // Marcas destacadas: nombre igual a p.marca; logo opcional en img/marcas/ (si no hay, se muestra el nombre con estilo)
   const MARCAS = [
-    { nombre: "Bentgo", logo: "" }, { nombre: "LEGO", logo: "" }, { nombre: "HERSHEY'S", logo: "" },
-    { nombre: "Lindt", logo: "" }, { nombre: "Ghirardelli", logo: "" }, { nombre: "Sol de Janeiro", logo: "" },
-    { nombre: "Cat & Jack", logo: "" }, { nombre: "Sunday Riley", logo: "" }, { nombre: "Squishmallows", logo: "" },
-    { nombre: "Post-it", logo: "" }, { nombre: "The Honest Company", logo: "" }, { nombre: "Burt's Bees", logo: "" },
+    { nombre: "Bentgo", logo: "img/marcas/bentgo.png", fondo: "#48a5dc" },
+    { nombre: "LEGO", logo: "img/marcas/lego.png", fondo: "#ffffff" },
+    { nombre: "HERSHEY'S", logo: "img/marcas/hersheys.png", fondo: "#43141a" },
+    { nombre: "Lindt", logo: "img/marcas/lindt.png", fondo: "#ffffff" },
+    { nombre: "Ghirardelli", logo: "img/marcas/ghirardelli.png", fondo: "#20356b" },
+    { nombre: "Sol de Janeiro", logo: "img/marcas/sol-de-janeiro.png", fondo: "#fcb616" },
+    { nombre: "Cat & Jack", logo: "img/marcas/cat-jack.png", fondo: "#b2dee4" },
+    { nombre: "Squishmallows", logo: "img/marcas/squishmallows.png", fondo: "#ffffff" },
+    { nombre: "Post-it", logo: "img/marcas/post-it.png", fondo: "#ffffff" },
+    { nombre: "The Honest Company", logo: "img/marcas/honest.png", fondo: "#f3e7db" },
+    { nombre: "Burt's Bees", logo: "img/marcas/burts-bees.png", fondo: "#ffffff" },
   ];
   const slugMarca = m => m.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   const productosMarca = m => C.PRODUCTOS.filter(p => slugMarca(p.marca) === slugMarca(m));
   function marcaHTML(m, base) {
     const n = productosMarca(m.nombre).length; if (!n) return "";
     return '<a class="marca-card" href="' + base + "?marca=" + slugMarca(m.nombre) + '">' +
-      (m.logo ? '<img src="' + esc(base.replace(/categoria\/$/, "") + m.logo) + '" alt="' + esc(m.nombre) + '">' : '<span class="marca-nom">' + esc(m.nombre) + "</span>") +
+      (m.logo ? '<span class="marca-logo" style="background:' + (m.fondo || "#fff") + '"><img loading="lazy" src="' + esc(base.replace(/categoria\/$/, "") + m.logo) + '" alt="' + esc(m.nombre) + '"></span>' : '<span class="marca-nom">' + esc(m.nombre) + "</span>") +
       '<span class="marca-n">' + n + (n === 1 ? " producto" : " productos") + "</span></a>";
   }
   function aviso(texto, href, accion) {
