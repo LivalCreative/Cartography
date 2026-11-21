@@ -48,7 +48,7 @@
   // ---- Carrito (se guarda en este celular) ----
   const KEY = "carto_pedido_v1";
   function leer() {
-    try { const o = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; Object.keys(o).forEach(k => { if (!porId(k) || !(o[k] > 0)) delete o[k]; }); return o; }
+    try { const o = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; Object.keys(o).forEach(k => { if (!porId(k.split("::")[0]) || !(o[k] > 0)) delete o[k]; }); return o; }
     catch (e) { return {}; }
   }
   function guardar(o) { try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) {} document.dispatchEvent(new CustomEvent("carto:pedido")); }
@@ -57,7 +57,7 @@
   function piezas() { const o = leer(); return Object.values(o).reduce((s, n) => s + n, 0); }
   function lineas() {
     const o = leer();
-    return Object.keys(o).map(id => { const p = porId(id); return { p, n: o[id], sub: p.precio * o[id], cruce: cruceDe(p) }; });
+    return Object.keys(o).map(id => { const [b, op] = id.split("::"); const p = porId(b); return { p, key: id, opcion: op || "", n: o[id], sub: p.precio * o[id], cruce: cruceDe(p) }; });
   }
 
   function pintarContador() { document.querySelectorAll("[data-contador]").forEach(e => { e.textContent = piezas(); }); }

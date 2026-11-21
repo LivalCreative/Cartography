@@ -227,3 +227,6 @@ h3.cat{font-family:var(--titulo);font-weight:800;font-size:21px;margin:0 0 12px;
 }
 .cat-titulo{text-align:center;font-family:var(--titulo);font-weight:800;font-size:32px;margin:6px 0 4px;color:var(--tinta)}
 .migas.centro{justify-content:center;display:flex;gap:6px;margin:0 0 18px}
+.opcion{display:flex;align-items:center;gap:8px;font-weight:700;margin:0 0 10px}
+.opcion select{font:inherit;padding:6px 10px;border-radius:10px;border:1px solid var(--linea);background:#fff}
+.comprar .opcion{flex-basis:100%}

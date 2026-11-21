@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="../assets/estilo.css?v=8">
+<link rel="stylesheet" href="../assets/estilo.css?v=9">
 <link rel="stylesheet" href="../assets/navidad.css?v=4">
 <script src="../assets/nieve.js?v=3"></script>
 </head>
@@ -72,9 +72,9 @@
   </div>
 </main>
 
-<script src="../assets/productos.js?v=8"></script>
+<script src="../assets/productos.js?v=9"></script>
 <script>window.CARTO_PRODUCTOS.forEach(p => { p.fotos = p.fotos.map(f => /^https?:/.test(f) ? f : "../" + f); });</script>
-<script src="../assets/tienda.js?v=5"></script>
+<script src="../assets/tienda.js?v=6"></script>
 <script>
 (function () {
   const C = window.CARTO;
@@ -102,9 +102,9 @@
     $("lleno").hidden = d.ls.length === 0;
     if (!d.ls.length) return;
     $("lineas").innerHTML = d.ls.map(l =>
-      '<div class="linea"><img src="' + esc(l.p.fotos[0]) + '" alt=""><div class="d"><b>' + esc(l.p.nombre) + "</b><small>" + esc(l.p.marca) +
-      (l.cruce ? " · Llega " + esc(l.cruce.entrega) : "") + '</small><div class="mini"><button type="button" data-id="' + esc(l.p.id) + '" data-d="-1" aria-label="Quitar uno">−</button><span class="q">' + l.n +
-      '</span><button type="button" data-id="' + esc(l.p.id) + '" data-d="1" aria-label="Agregar uno">+</button><button type="button" class="quitar" data-id="' + esc(l.p.id) + '" data-x="1">Quitar</button></div></div><div class="m">' +
+      '<div class="linea"><img src="' + esc(l.p.fotos[0]) + '" alt=""><div class="d"><b>' + esc(l.p.nombre) + (l.opcion ? " · " + esc(l.opcion) : "") + "</b><small>" + esc(l.p.marca) +
+      (l.cruce ? " · Llega " + esc(l.cruce.entrega) : "") + '</small><div class="mini"><button type="button" data-id="' + esc(l.key) + '" data-d="-1" aria-label="Quitar uno">−</button><span class="q">' + l.n +
+      '</span><button type="button" data-id="' + esc(l.key) + '" data-d="1" aria-label="Agregar uno">+</button><button type="button" class="quitar" data-id="' + esc(l.key) + '" data-x="1">Quitar</button></div></div><div class="m">' +
       C.dinero(l.sub) + "</div></div>").join("");
     $("total").textContent = C.dinero(d.total);
     $("ordena").textContent = C.dinero(d.ordena);
@@ -131,7 +131,7 @@
     const d = datos();
     const notas = $("fNotas").value.trim();
     const msg = ["¡Hola Cartography! Quiero hacer este pedido:", ""]
-      .concat(d.ls.map(l => "• " + l.n + " × " + l.p.nombre + " (" + l.p.marca + ") — " + C.dinero(l.sub) + (l.cruce ? "\n   Llega aprox. " + l.cruce.entrega : "")))
+      .concat(d.ls.map(l => "• " + l.n + " × " + l.p.nombre + (l.opcion ? " · " + l.opcion : "") + " (" + l.p.marca + ") — " + C.dinero(l.sub) + (l.cruce ? "\n   Llega aprox. " + l.cruce.entrega : "")))
       .concat(["", "Total: " + C.dinero(d.total), "Ordeno con: " + C.dinero(d.ordena), "Al recibirlo: " + C.dinero(d.resto), "",
         "Nombre: " + nombre, "Punto de entrega: " + lugar].concat(notas ? ["Comentarios: " + notas] : []).concat(["", "En un momento te mando mi comprobante."])).join("\n");
     window.open("https://wa.me/52" + C.WHATSAPP + "?text=" + encodeURIComponent(msg), "_blank");
