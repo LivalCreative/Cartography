@@ -12,8 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="assets/estilo.css?v=16">
-<link rel="stylesheet" href="assets/navidad.css?v=7">
+<link rel="stylesheet" href="assets/estilo.css?v=17">
+<link rel="stylesheet" href="assets/navidad.css?v=8">
 <script src="assets/nieve.js?v=3"></script>
 </head>
 <body class="navidad">
@@ -73,6 +73,14 @@
     </div>
   </section>
 
+  <section class="seccion" id="marcas">
+    <div class="wrap">
+      <h2 class="sec">Marcas favoritas <svg class="copo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M4.2 6.5l15.6 9M4.2 17.5l15.6-9M9.5 3.5 12 6l2.5-2.5M9.5 20.5 12 18l2.5 2.5M3 9.7l3.4.9-.9 3.4M21 14.3l-3.4-.9.9-3.4M3 14.3l3.4-.9-.9-3.4M21 9.7l-3.4.9.9 3.4"/></svg></h2>
+      <p class="sub">Las marcas de Estados Unidos que más te gustan, en un solo lugar.</p>
+      <div class="marcas" id="marcasGrid"></div>
+    </div>
+  </section>
+
   <section class="seccion" id="preguntas">
     <div class="wrap" style="max-width:720px">
       <h2 class="sec">Preguntas frecuentes <svg class="copo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M4.2 6.5l15.6 9M4.2 17.5l15.6-9M9.5 3.5 12 6l2.5-2.5M9.5 20.5 12 18l2.5 2.5M3 9.7l3.4.9-.9 3.4M21 14.3l-3.4-.9.9-3.4M3 14.3l3.4-.9-.9-3.4M21 9.7l-3.4.9.9 3.4"/></svg></h2>
@@ -97,7 +105,7 @@
 
 <script src="assets/productos.js?v=17"></script>
 <script src="assets/tienda.js?v=7"></script>
-<script src="assets/comun.js?v=15"></script>
+<script src="assets/comun.js?v=16"></script>
 <script>
 (function () {
   const C = window.CARTO, U = window.CARTO_UI, esc = U.esc;
@@ -121,6 +129,7 @@
   pa.href = "https://wa.me/52" + C.WHATSAPP + "?text=" + encodeURIComponent("¡Hola Cartography! Busco un producto que no vi en la tienda: ");
   pa.target = "_blank"; pa.rel = "noopener";
 
+  document.getElementById("marcasGrid").innerHTML = U.MARCAS.map(m => U.marcaHTML(m, "categoria/")).join("");
   document.getElementById("cats").innerHTML = U.CATEGORIAS.map(c => U.circuloHTML("categoria/?c=" + c.id, U.fotoCategoria(c), c.nombre)).join("");
 })();
 </script>

@@ -53,6 +53,22 @@
     const p = ps.find(x => (c.fotosGrupo || {})[g] === x.id) || ps[0];
     return p ? p.fotos[0] : "";
   }
+
+  // Marcas destacadas: nombre igual a p.marca; logo opcional en img/marcas/ (si no hay, se muestra el nombre con estilo)
+  const MARCAS = [
+    { nombre: "Bentgo", logo: "" }, { nombre: "LEGO", logo: "" }, { nombre: "HERSHEY'S", logo: "" },
+    { nombre: "Lindt", logo: "" }, { nombre: "Ghirardelli", logo: "" }, { nombre: "Sol de Janeiro", logo: "" },
+    { nombre: "Cat & Jack", logo: "" }, { nombre: "Sunday Riley", logo: "" }, { nombre: "Squishmallows", logo: "" },
+    { nombre: "Post-it", logo: "" }, { nombre: "The Honest Company", logo: "" }, { nombre: "Burt's Bees", logo: "" },
+  ];
+  const slugMarca = m => m.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const productosMarca = m => C.PRODUCTOS.filter(p => slugMarca(p.marca) === slugMarca(m));
+  function marcaHTML(m, base) {
+    const n = productosMarca(m.nombre).length; if (!n) return "";
+    return '<a class="marca-card" href="' + base + "?marca=" + slugMarca(m.nombre) + '">' +
+      (m.logo ? '<img src="' + esc(base.replace(/categoria\/$/, "") + m.logo) + '" alt="' + esc(m.nombre) + '">' : '<span class="marca-nom">' + esc(m.nombre) + "</span>") +
+      '<span class="marca-n">' + n + (n === 1 ? " producto" : " productos") + "</span></a>";
+  }
   function aviso(texto, href, accion) {
     const a = document.getElementById("aviso"); if (!a) return;
     a.innerHTML = "<span>" + esc(texto) + "</span>" + (href ? '<a href="' + href + '">' + esc(accion) + "</a>" : "");
@@ -62,5 +78,5 @@
     const b = document.getElementById("banda"), pc = C.proximoCruce && C.proximoCruce();
     if (b && pc) b.innerHTML = "Edición navideña · Pide antes del <b>" + C.bonita(pc.corteMismoDia) + "</b> y recíbelo del " + esc(pc.entrega);
   });
-  window.CARTO_UI = { esc, pasosHTML, tarjetaHTML, aviso, USO, CATEGORIAS, catPorId, catDe, productosDe, circuloHTML, fotoCategoria, fotoGrupo };
+  window.CARTO_UI = { esc, pasosHTML, tarjetaHTML, aviso, USO, CATEGORIAS, catPorId, catDe, productosDe, circuloHTML, fotoCategoria, fotoGrupo, MARCAS, slugMarca, productosMarca, marcaHTML };
 })();

@@ -11,8 +11,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="../assets/estilo.css?v=16">
-<link rel="stylesheet" href="../assets/navidad.css?v=7">
+<link rel="stylesheet" href="../assets/estilo.css?v=17">
+<link rel="stylesheet" href="../assets/navidad.css?v=8">
 <script src="../assets/nieve.js?v=3"></script>
 </head>
 <body class="navidad">
@@ -61,11 +61,26 @@
 
 <script src="../assets/productos.js?v=17"></script>
 <script src="../assets/tienda.js?v=7"></script>
-<script src="../assets/comun.js?v=15"></script>
+<script src="../assets/comun.js?v=16"></script>
 <script>
 (function () {
   const C = window.CARTO, U = window.CARTO_UI, esc = U.esc, $ = id => document.getElementById(id);
   const q = new URLSearchParams(location.search);
+  const mq = q.get("marca");
+  if (mq) {
+    const ps = U.productosMarca(mq), nom = ps.length ? ps[0].marca : "Marca";
+    document.title = nom + " · Cartography";
+    $("titulo").textContent = nom;
+    $("migas").innerHTML = '<a href="../">Inicio</a><span aria-hidden="true">›</span><a href="../#marcas">Marcas</a><span aria-hidden="true">›</span><span>' + esc(nom) + "</span>";
+    $("subcats").hidden = true; $("filtros").hidden = true;
+    $("tituloGrid").firstChild.textContent = "Todo de " + nom + " ";
+    $("sub").textContent = ps.length + " productos. Toca uno para ver qué es y cuándo te llega.";
+    const cats = [...new Set(ps.map(p => p.categoria))];
+    $("grid").innerHTML = ps.length ? cats.map(ct => '<div class="seccion-cat"><h3 class="cat">' + esc(ct) + '</h3><div class="grid">' + ps.filter(p => p.categoria === ct).map(p => U.tarjetaHTML(p, "../producto/?id=")).join("") + "</div></div>").join("") : '<p class="sub">Pronto tendremos productos de esta marca.</p>';
+    $("cats").innerHTML = U.CATEGORIAS.map(x => U.circuloHTML("./?c=" + x.id, U.fotoCategoria(x), x.nombre)).join("");
+    $("otras").querySelector("h2").firstChild.textContent = "Categorías ";
+    return;
+  }
   const c = U.catPorId(q.get("c"));
   const otras = U.CATEGORIAS.filter(x => x !== c);
   $("cats").innerHTML = otras.map(x => U.circuloHTML("./?c=" + x.id, U.fotoCategoria(x), x.nombre)).join("");
