@@ -287,3 +287,4 @@ h3.cat{font-family:var(--titulo);font-weight:800;font-size:21px;margin:0 0 12px;
 @media (min-width:1000px){.marca-card .marca-logo{height:104px}.marca-card .marca-logo img{max-height:82px}}
 .marca-card{padding:0}
 .marca-card .marca-logo{border-bottom:0}
+.aviso-prod{margin:10px 0 4px;padding:10px 14px;border-radius:12px;background:#f4f0f8;color:var(--tinta2);font-size:13.5px;line-height:1.45;border-left:4px solid var(--rosa)}
