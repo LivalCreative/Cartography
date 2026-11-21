@@ -257,3 +257,15 @@ h3.cat{font-family:var(--titulo);font-weight:800;font-size:21px;margin:0 0 12px;
 .muestras button:hover{transform:scale(1.06);border-color:var(--rosa)}
 .muestras button[aria-pressed="true"]{border-color:var(--rosa);box-shadow:0 0 0 2px #fff inset,0 3px 10px rgba(142,90,168,.3)}
 .prod .foto .nvar{position:absolute;left:8px;bottom:10px;background:rgba(255,255,255,.92);color:var(--tinta);font-size:11.5px;font-weight:800;padding:3px 8px;border-radius:999px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+/* Íconos de "Así llega tu pedido" más grandes */
+.ic{width:58px;height:58px}
+.ic svg{width:29px;height:29px;stroke-width:1.8}
+.dash{margin-top:28px}
+.st{font-size:13px;font-weight:600}
+@media (min-width:900px){
+  .ic{width:92px;height:92px}
+  .ic svg{width:46px;height:46px}
+  .dash{margin-top:46px;flex-basis:40px}
+  .st{font-size:16px;gap:10px}
+  .pasos .lbl{font-size:15px;margin-bottom:18px}
+}
