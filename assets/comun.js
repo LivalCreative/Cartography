@@ -18,7 +18,7 @@
   function tarjetaHTML(p, base) {
     return '<a class="prod" href="' + base + encodeURIComponent(p.id) + '"><div class="foto"><img loading="lazy" src="' + esc(p.fotos[0]) + '" alt="' + esc(p.nombre) + '">' +
       (p.fotos[1] ? '<img class="alt" loading="lazy" src="' + esc(p.fotos[1]) + '" alt="">' : "") +
-      (p.badge ? '<span class="badge">' + esc(p.badge) + "</span>" : "") + (p.variantes && p.variantes.length > 1 ? '<span class="nvar">' + p.variantes.length + " colores</span>" : "") + '</div><div class="info"><span class="marca">' + esc(p.marca) +
+      (p.badge ? '<span class="badge">' + esc(p.badge) + "</span>" : "") + (p.variantes && p.variantes.length > 1 ? '<span class="nvar">' + p.variantes.length + " opciones</span>" : "") + '</div><div class="info"><span class="marca">' + esc(p.marca) +
       '</span><span class="nom">' + esc(p.nombre) + '</span><span class="pre">' + C.dinero(p.precio) + "</span></div></a>";
   }
 
@@ -32,8 +32,8 @@
       grupos: ["LEGO", "Peluches", "Squishies y antiestrés", "Manualidades y arte", "Juegos y coleccionables", "Juguetes y playsets", "Accesorios"], portada: ["t1006979445"], fotosGrupo: { "LEGO": "t95046299" } },
     { id: "accesorios", nombre: "Accesorios", sub: "Broches, diademas, pinzas y todo para peinar a las niñas, con los diseños de Cat & Jack de Target.",
       grupos: ["Para el cabello", "Navideños"], portada: ["t95118563"], fotosGrupo: { "Navideños": "t95294219" } },
-    { id: "loncheras", nombre: "Loncheras", sub: "Loncheras Bentgo para niños y adultos, termos y contenedores para llevar la comida a donde sea.",
-      grupos: ["Para niños", "Para adultos", "Contenedores y accesorios"], portada: ["t76556680"], fotosGrupo: { "Para adultos": "t94858670" } },
+    { id: "loncheras", nombre: "Loncheras", sub: "Loncheras y mochilas Bentgo para niños y adultos, termos y contenedores para llevar la comida a donde sea.",
+      grupos: ["Para niños", "Para adultos", "Mochilas", "Contenedores y accesorios"], portada: ["t76556680"], fotosGrupo: { "Para adultos": "t94858670" } },
   ];
   const catPorId = id => CATEGORIAS.find(c => c.id === id);
   const catDe = p => CATEGORIAS.find(c => c.nombre === (p.categoria || "Holidays"));
