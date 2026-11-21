@@ -230,3 +230,11 @@ h3.cat{font-family:var(--titulo);font-weight:800;font-size:21px;margin:0 0 12px;
 .opcion{display:flex;align-items:center;gap:8px;font-weight:700;margin:0 0 10px}
 .opcion select{font:inherit;padding:6px 10px;border-radius:10px;border:1px solid var(--linea);background:#fff}
 .comprar .opcion{flex-basis:100%}
+/* Crédito Lival Creative en el pie */
+.pie .credito{display:flex;align-items:center;justify-content:center;gap:14px;margin:18px auto 0;padding-top:14px;border-top:1px dashed rgba(142,90,168,.35);max-width:560px;text-align:left;font-size:13.5px;line-height:1.45}
+.pie .credito img{width:78px;height:auto;display:block;transition:transform .2s ease}
+.pie .credito a.lival-logo:hover img{transform:rotate(-4deg) scale(1.06)}
+.pie .credito p{margin:0}
+.pie .credito b{color:var(--rosa2);font-size:14.5px}
+.pie .credito p a{color:var(--rosa);font-weight:800}
+@media (max-width:520px){.pie .credito{flex-direction:column;text-align:center}}
