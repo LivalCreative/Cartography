@@ -247,3 +247,13 @@ h3.cat{font-family:var(--titulo);font-weight:800;font-size:21px;margin:0 0 12px;
 .pastillas button:hover{border-color:var(--rosa);transform:translateY(-1px)}
 .pastillas button[aria-pressed="true"]{background:var(--rosa);border-color:var(--rosa);color:#fff;box-shadow:0 4px 10px rgba(142,90,168,.25)}
 @media (max-width:600px){.filtros{padding:12px}.filtros .fila{flex-direction:column;align-items:flex-start;gap:6px}.filtros>*{min-width:0}.pastillas{gap:6px}.pastillas button{font-size:13px;padding:6px 11px}}
+/* Colores / variantes */
+.colores{margin:4px 0 14px}
+.colores .colnom{margin:0 0 8px;font-size:14px;color:var(--tinta2)}
+.colores .colnom b{color:var(--tinta)}
+.muestras{display:flex;flex-wrap:wrap;gap:8px}
+.muestras button{width:54px;height:54px;padding:3px;border-radius:50%;border:2px solid var(--linea);background:#fff;overflow:hidden;transition:transform .15s ease,border-color .15s ease}
+.muestras button img{width:100%;height:100%;object-fit:contain;border-radius:50%}
+.muestras button:hover{transform:scale(1.06);border-color:var(--rosa)}
+.muestras button[aria-pressed="true"]{border-color:var(--rosa);box-shadow:0 0 0 2px #fff inset,0 3px 10px rgba(142,90,168,.3)}
+.prod .foto .nvar{position:absolute;left:8px;bottom:10px;background:rgba(255,255,255,.92);color:var(--tinta);font-size:11.5px;font-weight:800;padding:3px 8px;border-radius:999px;box-shadow:0 1px 4px rgba(0,0,0,.08)}

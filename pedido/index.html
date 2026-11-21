@@ -11,8 +11,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="../assets/estilo.css?v=14">
-<link rel="stylesheet" href="../assets/navidad.css?v=6">
+<link rel="stylesheet" href="../assets/estilo.css?v=15">
+<link rel="stylesheet" href="../assets/navidad.css?v=7">
 <script src="../assets/nieve.js?v=3"></script>
 </head>
 <body class="navidad">
@@ -74,9 +74,9 @@
 <footer class="pie"><div class="wrap"><p class="felices">Felices fiestas</p>Cartography · Querétaro<div class="credito"><a class="lival-logo" href="https://wa.me/524422791488?text=%C2%A1Hola%21%20Me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20p%C3%A1ginas%20web%20para%20negocios%20y%20emprendimientos." target="_blank" rel="noopener" aria-label="Lival Creative"><img src="../img/lival-creative.png" alt="Lival Creative" loading="lazy"></a><p><b>Powered by Lival Creative ✨</b><br>Tu tienda en línea está más cerca y es más fácil de lo que crees. <a href="https://wa.me/524422791488?text=%C2%A1Hola%21%20Me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20p%C3%A1ginas%20web%20para%20negocios%20y%20emprendimientos." target="_blank" rel="noopener">¡Contáctanos!</a></p></div></div></footer>
 
 
-<script src="../assets/productos.js?v=12"></script>
+<script src="../assets/productos.js?v=13"></script>
 <script>window.CARTO_PRODUCTOS.forEach(p => { p.fotos = p.fotos.map(f => /^https?:/.test(f) ? f : "../" + f); });</script>
-<script src="../assets/tienda.js?v=6"></script>
+<script src="../assets/tienda.js?v=7"></script>
 <script>
 (function () {
   const C = window.CARTO;
@@ -104,7 +104,7 @@
     $("lleno").hidden = d.ls.length === 0;
     if (!d.ls.length) return;
     $("lineas").innerHTML = d.ls.map(l =>
-      '<div class="linea"><img src="' + esc(l.p.fotos[0]) + '" alt=""><div class="d"><b>' + esc(l.p.nombre) + (l.opcion ? " · " + esc(l.opcion) : "") + "</b><small>" + esc(l.p.marca) +
+      '<div class="linea"><img src="' + esc(l.foto || l.p.fotos[0]) + '" alt=""><div class="d"><b>' + esc(l.p.nombre) + (l.opcion ? " · " + esc(l.opcion) : "") + "</b><small>" + esc(l.p.marca) +
       (l.cruce ? " · Llega " + esc(l.cruce.entrega) : "") + '</small><div class="mini"><button type="button" data-id="' + esc(l.key) + '" data-d="-1" aria-label="Quitar uno">−</button><span class="q">' + l.n +
       '</span><button type="button" data-id="' + esc(l.key) + '" data-d="1" aria-label="Agregar uno">+</button><button type="button" class="quitar" data-id="' + esc(l.key) + '" data-x="1">Quitar</button></div></div><div class="m">' +
       C.dinero(l.sub) + "</div></div>").join("");

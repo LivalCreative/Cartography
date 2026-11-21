@@ -11,8 +11,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="../assets/estilo.css?v=14">
-<link rel="stylesheet" href="../assets/navidad.css?v=6">
+<link rel="stylesheet" href="../assets/estilo.css?v=15">
+<link rel="stylesheet" href="../assets/navidad.css?v=7">
 <script src="../assets/nieve.js?v=3"></script>
 </head>
 <body class="navidad">
@@ -54,6 +54,7 @@
       <p class="nota" id="nota"></p>
 
       <div class="comprar">
+        <div class="colores" id="colores" hidden><p class="colnom"><span id="colLbl">Color</span>: <b id="colSel"></b></p><div class="muestras" id="muestras"></div></div>
         <label class="opcion" id="opcionWrap" hidden><span id="opcionNom"></span> <select id="opcion"></select></label>
         <div class="cant"><button type="button" data-c="-1" aria-label="Quitar uno">−</button><span id="cant">1</span><button type="button" data-c="1" aria-label="Agregar uno">+</button></div>
         <button class="btn" type="button" id="agregar">Agregar a mi pedido</button>
@@ -89,10 +90,10 @@
 <footer class="pie"><div class="wrap"><p class="felices">Felices fiestas</p>Cartography · Querétaro<div class="credito"><a class="lival-logo" href="https://wa.me/524422791488?text=%C2%A1Hola%21%20Me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20p%C3%A1ginas%20web%20para%20negocios%20y%20emprendimientos." target="_blank" rel="noopener" aria-label="Lival Creative"><img src="../img/lival-creative.png" alt="Lival Creative" loading="lazy"></a><p><b>Powered by Lival Creative ✨</b><br>Tu tienda en línea está más cerca y es más fácil de lo que crees. <a href="https://wa.me/524422791488?text=%C2%A1Hola%21%20Me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20p%C3%A1ginas%20web%20para%20negocios%20y%20emprendimientos." target="_blank" rel="noopener">¡Contáctanos!</a></p></div></div></footer>
 <div class="aviso" id="aviso" hidden role="status"></div>
 
-<script src="../assets/productos.js?v=12"></script>
+<script src="../assets/productos.js?v=13"></script>
 <script>window.CARTO_PRODUCTOS.forEach(p => { p.fotos = p.fotos.map(f => /^https?:/.test(f) ? f : "../" + f); });</script>
-<script src="../assets/tienda.js?v=6"></script>
-<script src="../assets/comun.js?v=13"></script>
+<script src="../assets/tienda.js?v=7"></script>
+<script src="../assets/comun.js?v=14"></script>
 <script>
 (function () {
   const C = window.CARTO, U = window.CARTO_UI, esc = U.esc, $ = id => document.getElementById(id);
@@ -132,7 +133,18 @@
   $("usos").innerHTML = (p.usos || []).map(u => '<div><span class="i">' + (U.USO[u.icono] || "•") + "</span><span><b>" + esc(u.titulo) + ":</b> " + esc(u.texto) + "</span></div>").join("");
   if (p.ideal) $("ideal").textContent = p.ideal.charAt(0).toUpperCase() + p.ideal.slice(1); else $("idealBloque").hidden = true;
 
-  if (p.opciones && p.opciones.valores && p.opciones.valores.length) {
+  let varSel = null;
+  if (p.variantes && p.variantes.length) {
+    $("colores").hidden = false; $("colLbl").textContent = p.opciones.nombre;
+    $("muestras").innerHTML = p.variantes.map((v, i) => '<button type="button" data-i="' + i + '" title="' + esc(v.n) + '" aria-label="' + esc(v.n) + '"><img src="' + esc(v.f) + '" alt=""></button>').join("");
+    const elige = i => {
+      varSel = p.variantes[i]; $("colSel").textContent = varSel.n;
+      $("fotoGrande").src = varSel.f; $("precio").textContent = C.dinero(varSel.p);
+      $("muestras").querySelectorAll("button").forEach((b, j) => b.setAttribute("aria-pressed", j === i ? "true" : "false"));
+    };
+    $("muestras").addEventListener("click", e => { const b = e.target.closest("button[data-i]"); if (b) elige(+b.dataset.i); });
+    elige(0);
+  } else if (p.opciones && p.opciones.valores && p.opciones.valores.length) {
     $("opcionNom").textContent = p.opciones.nombre; $("opcionWrap").hidden = false;
     $("opcion").innerHTML = p.opciones.valores.map(v => "<option>" + esc(v) + "</option>").join("");
   }
@@ -142,7 +154,7 @@
     cant = Math.max(1, Math.min(20, cant + Number(b.dataset.c))); $("cant").textContent = cant;
   });
   $("agregar").addEventListener("click", () => {
-    C.agregar(p.opciones ? p.id + "::" + p.opciones.nombre + " " + $("opcion").value : p.id, cant);
+    C.agregar(p.opciones ? p.id + "::" + p.opciones.nombre + " " + (varSel ? varSel.n : $("opcion").value) : p.id, cant);
     U.aviso("Agregado a tu pedido", "../pedido/", "Ver mi pedido");
   });
 

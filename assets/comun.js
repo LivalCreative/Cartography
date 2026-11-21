@@ -18,7 +18,7 @@
   function tarjetaHTML(p, base) {
     return '<a class="prod" href="' + base + encodeURIComponent(p.id) + '"><div class="foto"><img loading="lazy" src="' + esc(p.fotos[0]) + '" alt="' + esc(p.nombre) + '">' +
       (p.fotos[1] ? '<img class="alt" loading="lazy" src="' + esc(p.fotos[1]) + '" alt="">' : "") +
-      (p.badge ? '<span class="badge">' + esc(p.badge) + "</span>" : "") + '</div><div class="info"><span class="marca">' + esc(p.marca) +
+      (p.badge ? '<span class="badge">' + esc(p.badge) + "</span>" : "") + (p.variantes && p.variantes.length > 1 ? '<span class="nvar">' + p.variantes.length + " colores</span>" : "") + '</div><div class="info"><span class="marca">' + esc(p.marca) +
       '</span><span class="nom">' + esc(p.nombre) + '</span><span class="pre">' + C.dinero(p.precio) + "</span></div></a>";
   }
 

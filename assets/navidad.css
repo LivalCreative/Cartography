@@ -124,3 +124,5 @@ h2.sec .copo,h3.cat .copo{width:.8em;height:.8em;margin-left:6px;color:var(--ver
 .navidad .filtros .et{color:var(--verde2)}
 .navidad .pastillas button:hover{border-color:var(--rojo)}
 .navidad .pastillas button[aria-pressed="true"]{background:var(--rojo);border-color:var(--rojo);box-shadow:0 4px 10px rgba(195,49,61,.28)}
+.navidad .muestras button[aria-pressed="true"],.navidad .muestras button:hover{border-color:var(--rojo)}
+.navidad .prod .foto .nvar{color:var(--verde2)}
