@@ -74,7 +74,7 @@
     const n = productosMarca(m.nombre).length; if (!n) return "";
     return '<a class="marca-card" href="' + base + "?marca=" + slugMarca(m.nombre) + '">' +
       (m.logo ? '<span class="marca-logo" style="background:' + (m.fondo || "#fff") + '"><img loading="lazy" src="' + esc(base.replace(/categoria\/$/, "") + m.logo) + '" alt="' + esc(m.nombre) + '"></span>' : '<span class="marca-nom">' + esc(m.nombre) + "</span>") +
-      '<span class="marca-n">' + n + (n === 1 ? " producto" : " productos") + "</span></a>";
+      "</a>";
   }
   function aviso(texto, href, accion) {
     const a = document.getElementById("aviso"); if (!a) return;

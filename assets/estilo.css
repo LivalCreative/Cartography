@@ -285,3 +285,5 @@ h3.cat{font-family:var(--titulo);font-weight:800;font-size:21px;margin:0 0 12px;
 .marca-card .marca-logo{aspect-ratio:auto;height:96px;padding:10px 12px}
 .marca-card .marca-logo img{max-height:76px;max-width:100%}
 @media (min-width:1000px){.marca-card .marca-logo{height:104px}.marca-card .marca-logo img{max-height:82px}}
+.marca-card{padding:0}
+.marca-card .marca-logo{border-bottom:0}
