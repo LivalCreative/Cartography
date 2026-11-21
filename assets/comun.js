@@ -25,7 +25,7 @@
   // Categorías de la tienda: id (para la URL), nombre (igual a p.categoria), texto, orden de subsecciones y portada
   const CATEGORIAS = [
     { id: "holidays", nombre: "Holidays", sub: "Dulces, chocolates y antojos de temporada que solo salen en Navidad en Estados Unidos.",
-      grupos: ["Chocolates", "Gomitas y dulces", "Galletas, cereal y botanas", "Café, té y chocolate caliente", "Bebidas"], portada: ["t1011368150"] },
+      grupos: ["Chocolates", "Gomitas y dulces", "Galletas, cereal y botanas", "Café, té y chocolate caliente", "Bebidas", "Papelería navideña"], portada: ["t1011368150"], fotosGrupo: { "Papelería navideña": "t1011839307" } },
     { id: "belleza", nombre: "Belleza y cuidado", sub: "Skincare, kits de regalo, cuidado del bebé y sets para él de las marcas favoritas de Estados Unidos.",
       grupos: ["Kits de skincare", "Cuidado facial", "Cuerpo y baño", "Bebé", "Para él", "Labios y manos"], portada: ["t93592823"], fotosGrupo: { "Cuerpo y baño": "t95248090", "Kits de skincare": "t95251971", "Para él": "t1011891866" } },
     { id: "juguetes", nombre: "Juguetes", sub: "LEGO, peluches, squishies, manualidades y los juguetes más pedidos de Estados Unidos, para Navidad y Reyes.",
