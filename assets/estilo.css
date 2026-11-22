@@ -294,3 +294,13 @@ h3.cat{font-family:var(--titulo);font-weight:800;font-size:21px;margin:0 0 12px;
 .btn.wa{background:#25d366;color:#fff;box-shadow:0 6px 18px rgba(37,211,102,.3)}.btn.wa:hover{background:#1ebe5a}
 .pie-grupo{margin:12px 0 0}.pie-grupo a{display:inline-flex;align-items:center;gap:6px;color:#5be38f;font-weight:700;text-decoration:none}.pie-grupo a:hover{text-decoration:underline}
 @media (max-width:600px){.grupo-wa{padding:22px 18px;text-align:center;justify-content:center}.grupo-wa .btn{width:100%}}
+.nombres-wrap{width:100%;margin:4px 0 8px}
+.nom-ayuda{font-size:12.5px;color:var(--suave);margin:2px 0 8px}
+.nombres{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.nombres input{height:42px;border:1.5px solid rgba(142,90,168,.35);border-radius:12px;padding:0 12px;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--rosa2);background:#fff;transition:border-color .2s,box-shadow .2s}
+.nombres input::placeholder{font-weight:400;letter-spacing:0;text-transform:none;color:#b3a3bd}
+.nombres input:focus{outline:none;border-color:var(--rosa);box-shadow:0 0 0 3px rgba(142,90,168,.15)}
+.nombres input.nom-quitado{border-color:#d9534f;box-shadow:0 0 0 3px rgba(217,83,79,.15)}
+.nom-error{color:#c0392b;font-size:13px;font-weight:700;margin:6px 0 0}
+.nom-linea{display:block;color:var(--rosa2);font-weight:700}
+.comprar{flex-wrap:wrap}.comprar .colores,.comprar .nombres-wrap{flex:1 1 100%;margin-bottom:4px}
