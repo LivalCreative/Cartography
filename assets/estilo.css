@@ -288,3 +288,9 @@ h3.cat{font-family:var(--titulo);font-weight:800;font-size:21px;margin:0 0 12px;
 .marca-card{padding:0}
 .marca-card .marca-logo{border-bottom:0}
 .aviso-prod{margin:10px 0 4px;padding:10px 14px;border-radius:12px;background:#f4f0f8;color:var(--tinta2);font-size:13.5px;line-height:1.45;border-left:4px solid var(--rosa)}
+.grupo-wa{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:var(--rosaclaro);border:1.5px dashed var(--rosa);border-radius:24px;padding:26px 28px}
+.grupo-wa .sec{margin:0 0 6px}.grupo-wa .sub{margin:0}.grupo-wa .kicker{margin-bottom:10px;background:#fff}
+.grupo-txt{flex:1 1 320px}
+.btn.wa{background:#25d366;color:#fff;box-shadow:0 6px 18px rgba(37,211,102,.3)}.btn.wa:hover{background:#1ebe5a}
+.pie-grupo{margin:12px 0 0}.pie-grupo a{display:inline-flex;align-items:center;gap:6px;color:#5be38f;font-weight:700;text-decoration:none}.pie-grupo a:hover{text-decoration:underline}
+@media (max-width:600px){.grupo-wa{padding:22px 18px;text-align:center;justify-content:center}.grupo-wa .btn{width:100%}}
