@@ -31,7 +31,7 @@
     { id: "juguetes", nombre: "Juguetes", sub: "LEGO, peluches, squishies, manualidades y los juguetes más pedidos de Estados Unidos, para Navidad y Reyes.",
       grupos: ["LEGO", "Peluches", "Squishies y antiestrés", "Manualidades y arte", "Juegos y coleccionables", "Juguetes y playsets", "Accesorios"], portada: ["t1006979445"], fotosGrupo: { "LEGO": "t95046299" } },
     { id: "accesorios", nombre: "Accesorios", sub: "Broches, diademas, pinzas y todo para peinar a las niñas, con los diseños de Cat & Jack de Target.",
-      grupos: ["Para el cabello", "Navideños"], portada: ["t95118563"], fotosGrupo: { "Navideños": "t95294219" } },
+      grupos: ["Para el cabello", "Navideños", "Ropa"], portada: ["t95118563"], fotosGrupo: { "Navideños": "t95294219", "Ropa": "w20229720529" } },
     { id: "loncheras", nombre: "Loncheras", sub: "Loncheras y mochilas Bentgo para niños y adultos, termos y contenedores para llevar la comida a donde sea.",
       grupos: ["Para niños", "Para adultos", "Mochilas", "Contenedores y accesorios"], portada: ["t76556680"], fotosGrupo: { "Para adultos": "t94858670" } },
   ];
