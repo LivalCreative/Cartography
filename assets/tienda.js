@@ -33,7 +33,6 @@
 
   // Cruce al que alcanza un producto si se pide hoy
   function cruceDe(p) {
-    if (p && p.local) return { local: true, entrega: "por confirmar (hecho a pedido en Querétaro)" };
     const hoy = hoyISO();
     for (const c of CRUCES) {
       const corte = p && p.mismoDia ? c.corteMismoDia : c.corteEnLinea;
@@ -58,7 +57,7 @@
   function piezas() { const o = leer(); return Object.values(o).reduce((s, n) => s + n, 0); }
   function lineas() {
     const o = leer();
-    return Object.keys(o).map(id => { const [b, op, nom] = id.split("::"); const p = porId(b); const v = op && p.variantes ? p.variantes.find(x => (p.opciones.nombre + " " + x.n) === op) : null; const pu = v ? v.p : p.precio; return { p, key: id, opcion: op || "", nombres: nom || "", n: o[id], precio: pu, sub: pu * o[id], foto: v ? v.f : p.fotos[0], cruce: cruceDe(p) }; });
+    return Object.keys(o).map(id => { const [b, op] = id.split("::"); const p = porId(b); const v = op && p.variantes ? p.variantes.find(x => (p.opciones.nombre + " " + x.n) === op) : null; const pu = v ? v.p : p.precio; return { p, key: id, opcion: op || "", n: o[id], precio: pu, sub: pu * o[id], foto: v ? v.f : p.fotos[0], cruce: cruceDe(p) }; });
   }
 
   function pintarContador() { document.querySelectorAll("[data-contador]").forEach(e => { e.textContent = piezas(); }); }
