@@ -294,3 +294,9 @@ h3.cat{font-family:var(--titulo);font-weight:800;font-size:21px;margin:0 0 12px;
 .btn.wa{background:#25d366;color:#fff;box-shadow:0 6px 18px rgba(37,211,102,.3)}.btn.wa:hover{background:#1ebe5a}
 .pie-grupo{margin:12px 0 0}.pie-grupo a{display:inline-flex;align-items:center;gap:6px;color:#5be38f;font-weight:700;text-decoration:none}.pie-grupo a:hover{text-decoration:underline}
 @media (max-width:600px){.grupo-wa{padding:22px 18px;text-align:center;justify-content:center}.grupo-wa .btn{width:100%}}
+.barra-acc{display:flex;align-items:center;gap:10px}
+.ir-inicio{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--linea);color:var(--tinta,#3e2c47);border-radius:999px;padding:8px 14px;text-decoration:none;font-size:14px;font-weight:500;background:#fff}
+.ir-inicio:hover{border-color:currentColor}
+@media (max-width:480px){.ir-inicio span{display:none}.ir-inicio{padding:8px 10px}}
+.mi-pedido,.ir-inicio{white-space:nowrap}
+@media (max-width:480px){.barra-acc{gap:6px}.barra-acc .mi-pedido{padding:7px 10px;font-size:13px}.barra .logo{min-width:0;font-size:clamp(20px,6vw,28px)}}
