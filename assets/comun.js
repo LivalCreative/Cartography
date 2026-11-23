@@ -94,3 +94,15 @@
   });
   window.CARTO_UI = { esc, pasosHTML, tarjetaHTML, aviso, USO, CATEGORIAS, catPorId, catDe, productosDe, circuloHTML, fotoCategoria, fotoGrupo, MARCAS, slugMarca, productosMarca, marcaHTML };
 })();
+
+/* Protección básica de fotos y contenido: sin clic derecho, sin arrastrar imágenes
+   y sin el menú de "guardar imagen" al dejar presionado en el celular.
+   Los campos de texto (nombre, notas, búsqueda) siguen funcionando normal. */
+(() => {
+  const esCampo = el => el && el.closest && el.closest("input, textarea, select, [contenteditable]");
+  document.addEventListener("contextmenu", e => { if (!esCampo(e.target)) e.preventDefault(); });
+  document.addEventListener("dragstart", e => { if (e.target && e.target.tagName === "IMG") e.preventDefault(); });
+  const st = document.createElement("style");
+  st.textContent = "img{-webkit-user-drag:none;user-drag:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}";
+  document.head.appendChild(st);
+})();
