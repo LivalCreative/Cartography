@@ -24,17 +24,17 @@
 
   // Categorías de la tienda: id (para la URL), nombre (igual a p.categoria), texto, orden de subsecciones y portada
   const CATEGORIAS = [
-    { id: "holidays", icono: "holidays", nombre: "Holidays", sub: "Dulces, chocolates y antojos de temporada que solo salen en Navidad en Estados Unidos.",
+    { id: "holidays", icono: "holidays", iconosGrupo: { "Chocolates": "chocolates", "Gomitas y dulces": "gomitas", "Galletas, cereal y botanas": "galletas", "Café, té y chocolate caliente": "cafe", "Bebidas": "bebidas", "Papelería navideña": "papeleria" }, nombre: "Holidays", sub: "Dulces, chocolates y antojos de temporada que solo salen en Navidad en Estados Unidos.",
       grupos: ["Chocolates", "Gomitas y dulces", "Galletas, cereal y botanas", "Café, té y chocolate caliente", "Bebidas", "Papelería navideña"], portada: ["t1011368150"], fotosGrupo: { "Papelería navideña": "t1011839307" } },
-    { id: "belleza", icono: "belleza", nombre: "Belleza y cuidado", sub: "Skincare, kits de regalo, cuidado del bebé y sets para él de las marcas favoritas de Estados Unidos.",
+    { id: "belleza", icono: "belleza", iconosGrupo: { "Kits de skincare": "kits", "Cuidado facial": "facial", "Cuerpo y baño": "cuerpo", "Bebé": "bebe-belleza", "Para él": "para-el", "Labios y manos": "labios", "Bienestar infantil": "bienestar", "Suplementos": "suplementos" }, nombre: "Belleza y cuidado", sub: "Skincare, kits de regalo, cuidado del bebé y sets para él de las marcas favoritas de Estados Unidos.",
       grupos: ["Kits de skincare", "Cuidado facial", "Cuerpo y baño", "Bebé", "Para él", "Labios y manos", "Bienestar infantil", "Suplementos"], portada: ["t93592823"], fotosGrupo: { "Suplementos": "w17003869306", "Cuerpo y baño": "t95248090", "Kits de skincare": "t95251971", "Para él": "t1011891866" } },
-    { id: "juguetes", icono: "juguetes", nombre: "Juguetes", sub: "LEGO, peluches, squishies, manualidades y los juguetes más pedidos de Estados Unidos, para Navidad y Reyes.",
+    { id: "juguetes", icono: "juguetes", iconosGrupo: { "LEGO": "lego", "Peluches": "peluches", "Squishies y antiestrés": "squishies", "Manualidades y arte": "manualidades", "Juegos y coleccionables": "juegos", "Juguetes y playsets": "playsets", "Accesorios": "acc-juguetes" }, nombre: "Juguetes", sub: "LEGO, peluches, squishies, manualidades y los juguetes más pedidos de Estados Unidos, para Navidad y Reyes.",
       grupos: ["LEGO", "Peluches", "Squishies y antiestrés", "Manualidades y arte", "Juegos y coleccionables", "Juguetes y playsets", "Accesorios"], portada: ["t1006979445"], fotosGrupo: { "LEGO": "t95046299" } },
-    { id: "accesorios", icono: "accesorios", nombre: "Accesorios", sub: "Broches, diademas, pinzas y todo para peinar a las niñas, con los diseños de Cat & Jack de Target.",
+    { id: "accesorios", icono: "accesorios", iconosGrupo: { "Para el cabello": "cabello", "Navideños": "navidenos" }, nombre: "Accesorios", sub: "Broches, diademas, pinzas y todo para peinar a las niñas, con los diseños de Cat & Jack de Target.",
       grupos: ["Para el cabello", "Navideños"], portada: ["t95118563"], fotosGrupo: { "Navideños": "t95294219" } },
     { id: "ropa", nombre: "Ropa", sub: "Sudaderas, pijamas y conjuntos para bebés, niñas y niños de Walmart, en tallas de Estados Unidos.",
       grupos: ["Bebé", "Niñas", "Niños", "Pijamas"], portada: ["w20229720529"], icono: "ropa", iconosGrupo: { "Bebé": "bebe", "Niñas": "ninas", "Niños": "ninos", "Pijamas": "pijamas" } },
-    { id: "loncheras", icono: "loncheras", nombre: "Loncheras", sub: "Loncheras y mochilas Bentgo para niños y adultos, termos y contenedores para llevar la comida a donde sea.",
+    { id: "loncheras", icono: "loncheras", iconosGrupo: { "Para niños": "lonch-ninos", "Para adultos": "lonch-adultos", "Mochilas": "mochilas", "Contenedores y accesorios": "contenedores" }, nombre: "Loncheras", sub: "Loncheras y mochilas Bentgo para niños y adultos, termos y contenedores para llevar la comida a donde sea.",
       grupos: ["Para niños", "Para adultos", "Mochilas", "Contenedores y accesorios"], portada: ["t76556680"], fotosGrupo: { "Para adultos": "t94858670" } },
   ];
   const catPorId = id => CATEGORIAS.find(c => c.id === id);
