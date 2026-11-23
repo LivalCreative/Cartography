@@ -300,3 +300,21 @@ h3.cat{font-family:var(--titulo);font-weight:800;font-size:21px;margin:0 0 12px;
 @media (max-width:480px){.ir-inicio span{display:none}.ir-inicio{padding:8px 10px}}
 .mi-pedido,.ir-inicio{white-space:nowrap}
 @media (max-width:480px){.barra-acc{gap:6px}.barra-acc .mi-pedido{padding:7px 10px;font-size:13px}.barra .logo{min-width:0;font-size:clamp(20px,6vw,28px)}}
+/* Selector de variantes */
+.elegir{background:#fff;border:1px solid var(--linea);border-radius:18px;padding:16px 18px;margin:18px 0 0;display:grid;gap:18px;box-shadow:0 4px 18px rgba(62,44,71,.05)}
+.elegir .colores{margin:0}
+.elegir .opcion{display:block;margin:0;font-weight:400}
+.elegir .colnom{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0 0 10px;font-size:14px;color:var(--tinta2)}
+.elegir .colnom b{color:var(--tinta);font-weight:700}
+.elegir .colnom small{font-size:12px;color:var(--suave);white-space:nowrap}
+.elegir .muestras{display:grid;grid-template-columns:repeat(auto-fill,minmax(58px,1fr));gap:8px}
+.elegir .muestras button{width:auto;height:auto;aspect-ratio:1;padding:3px;border-radius:14px;border:2px solid var(--linea);background:#fff;cursor:pointer;position:relative}
+.elegir .muestras button img{border-radius:10px;object-fit:contain;background:#fff}
+.elegir .muestras button[aria-pressed="true"]{border-color:var(--rosa);box-shadow:0 4px 12px rgba(62,44,71,.18)}
+.elegir .muestras button[aria-pressed="true"]::after{content:"✓";position:absolute;top:-7px;right:-7px;width:20px;height:20px;border-radius:50%;background:var(--rosa);color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center;border:2px solid #fff}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{min-width:56px;padding:9px 14px;border-radius:12px;border:1.5px solid var(--linea);background:var(--papel);font:inherit;font-size:14px;font-weight:600;color:var(--tinta);cursor:pointer;transition:border-color .15s,background .15s}
+.chips button:hover:not(:disabled){border-color:var(--rosa)}
+.chips button[aria-pressed="true"]{background:var(--rosa);border-color:var(--rosa);color:#fff}
+.chips button:disabled{color:var(--suave);background:transparent;border-style:dashed;text-decoration:line-through;cursor:not-allowed}
+.elegir + .comprar{margin-top:14px}
