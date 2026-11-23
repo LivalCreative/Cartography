@@ -15,4 +15,4 @@ Sitio estático publicado con GitHub Pages.
 
 Lo privado del negocio (precios en dólares, links de compra, fórmula de costos y márgenes) va en Google Drive, carpeta "Tienda Cartography". Este repositorio es público: nunca subir esos datos ni datos de clientas.
 
-Por ahora la página no se muestra en Google (`robots.txt` y `noindex`). Quitar ambos cuando se lance con dominio propio.
+Lanzada el 22 de noviembre de 2026: visible en Google (`robots.txt` permite todo y hay `sitemap.xml`).
