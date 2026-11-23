@@ -24,17 +24,17 @@
 
   // Categorías de la tienda: id (para la URL), nombre (igual a p.categoria), texto, orden de subsecciones y portada
   const CATEGORIAS = [
-    { id: "holidays", nombre: "Holidays", sub: "Dulces, chocolates y antojos de temporada que solo salen en Navidad en Estados Unidos.",
+    { id: "holidays", icono: "holidays", nombre: "Holidays", sub: "Dulces, chocolates y antojos de temporada que solo salen en Navidad en Estados Unidos.",
       grupos: ["Chocolates", "Gomitas y dulces", "Galletas, cereal y botanas", "Café, té y chocolate caliente", "Bebidas", "Papelería navideña"], portada: ["t1011368150"], fotosGrupo: { "Papelería navideña": "t1011839307" } },
-    { id: "belleza", nombre: "Belleza y cuidado", sub: "Skincare, kits de regalo, cuidado del bebé y sets para él de las marcas favoritas de Estados Unidos.",
+    { id: "belleza", icono: "belleza", nombre: "Belleza y cuidado", sub: "Skincare, kits de regalo, cuidado del bebé y sets para él de las marcas favoritas de Estados Unidos.",
       grupos: ["Kits de skincare", "Cuidado facial", "Cuerpo y baño", "Bebé", "Para él", "Labios y manos", "Bienestar infantil", "Suplementos"], portada: ["t93592823"], fotosGrupo: { "Suplementos": "w17003869306", "Cuerpo y baño": "t95248090", "Kits de skincare": "t95251971", "Para él": "t1011891866" } },
-    { id: "juguetes", nombre: "Juguetes", sub: "LEGO, peluches, squishies, manualidades y los juguetes más pedidos de Estados Unidos, para Navidad y Reyes.",
+    { id: "juguetes", icono: "juguetes", nombre: "Juguetes", sub: "LEGO, peluches, squishies, manualidades y los juguetes más pedidos de Estados Unidos, para Navidad y Reyes.",
       grupos: ["LEGO", "Peluches", "Squishies y antiestrés", "Manualidades y arte", "Juegos y coleccionables", "Juguetes y playsets", "Accesorios"], portada: ["t1006979445"], fotosGrupo: { "LEGO": "t95046299" } },
-    { id: "accesorios", nombre: "Accesorios", sub: "Broches, diademas, pinzas y todo para peinar a las niñas, con los diseños de Cat & Jack de Target.",
+    { id: "accesorios", icono: "accesorios", nombre: "Accesorios", sub: "Broches, diademas, pinzas y todo para peinar a las niñas, con los diseños de Cat & Jack de Target.",
       grupos: ["Para el cabello", "Navideños"], portada: ["t95118563"], fotosGrupo: { "Navideños": "t95294219" } },
     { id: "ropa", nombre: "Ropa", sub: "Sudaderas, pijamas y conjuntos para bebés, niñas y niños de Walmart, en tallas de Estados Unidos.",
-      grupos: ["Bebé", "Niñas", "Niños", "Pijamas"], portada: ["w20229720529"], fotosGrupo: { "Bebé": "w20485557494", "Niñas": "w19617571393", "Niños": "w19710368598", "Pijamas": "w20389102467" } },
-    { id: "loncheras", nombre: "Loncheras", sub: "Loncheras y mochilas Bentgo para niños y adultos, termos y contenedores para llevar la comida a donde sea.",
+      grupos: ["Bebé", "Niñas", "Niños", "Pijamas"], portada: ["w20229720529"], icono: "ropa", iconosGrupo: { "Bebé": "bebe", "Niñas": "ninas", "Niños": "ninos", "Pijamas": "pijamas" } },
+    { id: "loncheras", icono: "loncheras", nombre: "Loncheras", sub: "Loncheras y mochilas Bentgo para niños y adultos, termos y contenedores para llevar la comida a donde sea.",
       grupos: ["Para niños", "Para adultos", "Mochilas", "Contenedores y accesorios"], portada: ["t76556680"], fotosGrupo: { "Para adultos": "t94858670" } },
   ];
   const catPorId = id => CATEGORIAS.find(c => c.id === id);
@@ -46,11 +46,13 @@
       '><span class="bola"><img loading="lazy" src="' + esc(foto) + '" alt=""></span><span class="nombre">' + esc(nombre) + "</span></a>";
   }
   function fotoCategoria(c) {
+    if (c.icono) return (document.querySelector('script[src*="comun.js"]').getAttribute("src").replace(/assets\/comun\.js.*$/, "")) + "img/iconos/" + c.icono + ".svg";
     const ps = productosDe(c);
     const p = ps.find(x => x.id === c.portada[0]) || ps[0];
     return p ? p.fotos[0] : "";
   }
   function fotoGrupo(c, g) {
+    if (c.iconosGrupo && c.iconosGrupo[g]) return (document.querySelector('script[src*="comun.js"]').getAttribute("src").replace(/assets\/comun\.js.*$/, "")) + "img/iconos/" + c.iconosGrupo[g] + ".svg";
     const ps = productosDe(c).filter(p => p.grupo === g);
     const p = ps.find(x => (c.fotosGrupo || {})[g] === x.id) || ps[0];
     return p ? p.fotos[0] : "";
