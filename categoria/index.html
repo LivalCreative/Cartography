@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="../assets/estilo.css?v=29">
+<link rel="stylesheet" href="../assets/estilo.css?v=30">
 <link rel="stylesheet" href="../assets/navidad.css?v=8">
 <script src="../assets/nieve.js?v=3"></script>
 </head>
@@ -31,6 +31,7 @@
     <div class="wrap">
       <h1 class="cat-titulo" id="titulo">Productos</h1>
       <nav class="migas centro" aria-label="Ruta" id="migas"><a href="../">Inicio</a></nav>
+      <p class="cambiar" id="cambiar" hidden><a href="./?c=ropa" id="cambiarLink">‹ Ver otras edades</a></p>
       <div class="circulos" id="subcats"></div>
       <h2 class="sec" id="tituloGrid">Todo <svg class="copo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M4.2 6.5l15.6 9M4.2 17.5l15.6-9M9.5 3.5 12 6l2.5-2.5M9.5 20.5 12 18l2.5 2.5M3 9.7l3.4.9-.9 3.4M21 14.3l-3.4-.9.9-3.4M3 14.3l3.4-.9-.9-3.4M21 9.7l-3.4.9.9 3.4"/></svg></h2>
       <p class="sub" id="sub"></p>
@@ -99,8 +100,12 @@
   $("titulo").textContent = g || c.nombre;
   $("migas").innerHTML = '<a href="../">Inicio</a><span aria-hidden="true">›</span>' +
     (g ? '<a href="' + base + '">' + esc(c.nombre) + '</a><span aria-hidden="true">›</span><span>' + esc(g) + "</span>" : "<span>" + esc(c.nombre) + "</span>");
-  $("subcats").innerHTML = U.circuloHTML(base, U.fotoCategoria(c), "Ver todo", !g) +
-    grupos.map(x => U.circuloHTML(base + "&g=" + slug(x), U.fotoGrupo(c, x), x, x === g, ps.some(p => enGrupo(p, x)) ? "" : "Pronto")).join("");
+  const iconoBase = (document.querySelector('script[src*="comun.js"]').getAttribute("src").replace(/assets\/comun\.js.*$/, "")) + "img/iconos/";
+  const pintaPersonas = () => {
+    $("subcats").innerHTML = U.circuloHTML(base, U.fotoCategoria(c), "Ver todo", !g) +
+      grupos.map(x => U.circuloHTML(base + "&g=" + slug(x), U.fotoGrupo(c, x), x, x === g, ps.some(p => enGrupo(p, x)) ? "" : "Pronto")).join("");
+  };
+  pintaPersonas();
 
   $("subcats").classList.toggle("muchos", grupos.length > 6);
   const mostrar = g ? [g] : grupos;
@@ -118,7 +123,19 @@
 
   const tiposCat = (c.tipos || []).filter(t => base0.some(p => p.tipo === t));
   let T = tiposCat.find(t => slug(t) === q.get("t")) || "";
-  if (tiposCat.length > 1) {
+  if (g && tiposCat.length) {
+    const bg = base + "&g=" + slug(g);
+    $("subcats").innerHTML = U.circuloHTML(bg, U.fotoGrupo(c, g), "Todo " + g, !T) +
+      tiposCat.map(t => U.circuloHTML(bg + "&t=" + slug(t), iconoBase + "t-" + slug(t) + ".svg", t, t === T)).join("");
+    $("subcats").classList.toggle("muchos", tiposCat.length + 1 > 6);
+    if (T) {
+      document.title = T + " · " + g + " · Cartography";
+      $("titulo").textContent = T + " · " + g;
+      $("migas").innerHTML = '<a href="../">Inicio</a><span aria-hidden="true">›</span><a href="' + base + '">' + esc(c.nombre) + '</a><span aria-hidden="true">›</span><a href="' + bg + '">' + esc(g) + '</a><span aria-hidden="true">›</span><span>' + esc(T) + "</span>";
+      $("tituloGrid").firstChild.textContent = T + " ";
+    }
+    $("cambiar").hidden = false; $("cambiarLink").href = base;
+  } else if (tiposCat.length > 1) {
     $("tipos").hidden = false;
     const pintaTipos = () => {
       $("tipos").innerHTML = '<span class="et">¿Qué buscas?</span><div class="pastillas">' +
