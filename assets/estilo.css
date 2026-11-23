@@ -321,3 +321,22 @@ h3.cat{font-family:var(--titulo);font-weight:800;font-size:21px;margin:0 0 12px;
 /* Todas las fotos de tarjeta del mismo tamaño */
 .prod .foto{aspect-ratio:1/1;overflow:hidden;min-height:0;height:auto}
 .prod .foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:6px;box-sizing:border-box;background:#fff}
+/* Tipo de prenda y grupos próximos */
+.tipos{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap;justify-content:center;margin:-6px 0 18px}
+.tipos .et{font-weight:800;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--rosa2)}
+.tipos .pastillas{justify-content:center}
+.tipos button{font:inherit;font-size:15px;font-weight:700;padding:10px 16px;border-radius:999px;border:1.5px solid var(--linea);background:#fff;color:var(--tinta);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.tipos button small{font-size:11.5px;font-weight:800;min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:var(--rosaclaro);color:var(--rosa2);display:inline-grid;place-items:center}
+.tipos button:hover{border-color:var(--rosa)}
+.tipos button[aria-pressed="true"]{background:var(--rosa);border-color:var(--rosa);color:#fff}
+.tipos button[aria-pressed="true"] small{background:rgba(255,255,255,.25);color:#fff}
+.circulo .bola{position:relative}
+.circulo .etiqueta{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);background:var(--tinta);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.03em;padding:2px 8px;border-radius:999px}
+.circulo.con-etiqueta .bola img{opacity:.55}
+.pronto-caja{text-align:center;max-width:520px;margin:10px auto 30px;padding:28px 22px}
+.pronto-caja img{display:block;margin:0 auto 10px}
+.pronto-caja h3{margin:0 0 8px;font-size:20px}
+.pronto-caja p{margin:0 0 16px;color:var(--tinta2)}
+@media (min-width:900px){.circulos.muchos{gap:18px 8px;flex-wrap:nowrap}.circulos.muchos .circulo{width:116px}.circulos.muchos .circulo .bola{width:104px;height:104px}.circulos.muchos .circulo .nombre{font-size:14px}}
+@media (max-width:899px){.circulos.muchos{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;padding:4px 4px 8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}.circulos.muchos .circulo{flex:0 0 auto;scroll-snap-align:start}}
+@media (max-width:899px){.circulos.muchos{gap:10px;margin-left:-16px;margin-right:-16px;padding-left:16px;padding-right:16px}.circulos.muchos .circulo{width:78px}.circulos.muchos .circulo .bola{width:72px;height:72px}.circulos.muchos .circulo .nombre{font-size:12.5px}}

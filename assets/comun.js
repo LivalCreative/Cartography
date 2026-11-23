@@ -32,8 +32,11 @@
       grupos: ["LEGO", "Peluches", "Squishies y antiestrés", "Manualidades y arte", "Juegos y coleccionables", "Juguetes y playsets", "Accesorios"], portada: ["t1006979445"], fotosGrupo: { "LEGO": "t95046299" } },
     { id: "accesorios", icono: "accesorios", iconosGrupo: { "Para el cabello": "cabello", "Navideños": "navidenos" }, nombre: "Accesorios", sub: "Broches, diademas, pinzas y todo para peinar a las niñas, con los diseños de Cat & Jack de Target.",
       grupos: ["Para el cabello", "Navideños"], portada: ["t95118563"], fotosGrupo: { "Navideños": "t95294219" } },
-    { id: "ropa", nombre: "Ropa", sub: "Sudaderas, pijamas y conjuntos para bebés, niñas y niños de Walmart, en tallas de Estados Unidos.",
-      grupos: ["Bebé", "Niñas", "Niños", "Pijamas"], portada: ["w20229720529"], icono: "ropa", iconosGrupo: { "Bebé": "bebe", "Niñas": "ninas", "Niños": "ninos", "Pijamas": "pijamas" } },
+    { id: "ropa", nombre: "Ropa", sub: "Ropa de Walmart en tallas de Estados Unidos: elige para quién y luego qué buscas.",
+      grupos: ["Bebé", "Niñas", "Niños", "Adolescente mujer", "Adolescente hombre", "Mujer", "Hombre"], mostrarVacios: true, portada: ["w20229720529"], icono: "ropa",
+      iconosGrupo: { "Bebé": "bebe", "Niñas": "ninas", "Niños": "ninos", "Adolescente mujer": "teen-mujer", "Adolescente hombre": "teen-hombre", "Mujer": "mujer", "Hombre": "hombre" },
+      descGrupo: { "Bebé": "De recién nacido a 24 meses", "Niñas": "Tallas 2T a 12", "Niños": "Tallas 2T a 12", "Adolescente mujer": "Tallas 12 a 18 de niña y juveniles", "Adolescente hombre": "Tallas 12 a 18 de niño y juveniles", "Mujer": "Tallas de adulto", "Hombre": "Tallas de adulto" },
+      tipos: ["Sudaderas", "Playeras", "Conjuntos", "Pantalones", "Pijamas", "Mamelucos"] },
     { id: "loncheras", icono: "loncheras", iconosGrupo: { "Para niños": "lonch-ninos", "Para adultos": "lonch-adultos", "Mochilas": "mochilas", "Contenedores y accesorios": "contenedores" }, nombre: "Loncheras", sub: "Loncheras y mochilas Bentgo para niños y adultos, termos y contenedores para llevar la comida a donde sea.",
       grupos: ["Para niños", "Para adultos", "Mochilas", "Contenedores y accesorios"], portada: ["t76556680"], fotosGrupo: { "Para adultos": "t94858670" } },
   ];
@@ -41,9 +44,9 @@
   const catDe = p => CATEGORIAS.find(c => c.nombre === (p.categoria || "Holidays"));
   const productosDe = c => C.PRODUCTOS.filter(p => (p.categoria || "Holidays") === c.nombre);
   // Círculo estilo Target: foto redonda + nombre
-  function circuloHTML(href, foto, nombre, activo) {
-    return '<a class="circulo' + (activo ? " activo" : "") + '" href="' + href + '"' + (activo ? ' aria-current="page"' : "") +
-      '><span class="bola"><img loading="lazy" src="' + esc(foto) + '" alt=""></span><span class="nombre">' + esc(nombre) + "</span></a>";
+  function circuloHTML(href, foto, nombre, activo, etiqueta) {
+    return '<a class="circulo' + (activo ? " activo" : "") + (etiqueta ? " con-etiqueta" : "") + '" href="' + href + '"' + (activo ? ' aria-current="page"' : "") +
+      '><span class="bola"><img loading="lazy" src="' + esc(foto) + '" alt="">' + (etiqueta ? '<span class="etiqueta">' + esc(etiqueta) + "</span>" : "") + '</span><span class="nombre">' + esc(nombre) + "</span></a>";
   }
   function fotoCategoria(c) {
     if (c.icono) return (document.querySelector('script[src*="comun.js"]').getAttribute("src").replace(/assets\/comun\.js.*$/, "")) + "img/iconos/" + c.icono + ".svg";
@@ -53,7 +56,7 @@
   }
   function fotoGrupo(c, g) {
     if (c.iconosGrupo && c.iconosGrupo[g]) return (document.querySelector('script[src*="comun.js"]').getAttribute("src").replace(/assets\/comun\.js.*$/, "")) + "img/iconos/" + c.iconosGrupo[g] + ".svg";
-    const ps = productosDe(c).filter(p => p.grupo === g);
+    const ps = productosDe(c).filter(p => p.grupo === g || (p.tambien || []).includes(g));
     const p = ps.find(x => (c.fotosGrupo || {})[g] === x.id) || ps[0];
     return p ? p.fotos[0] : "";
   }
