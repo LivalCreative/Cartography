@@ -101,6 +101,10 @@
 (() => {
   const esCampo = el => el && el.closest && el.closest("input, textarea, select, [contenteditable]");
   document.addEventListener("contextmenu", e => { if (!esCampo(e.target)) e.preventDefault(); });
+  document.addEventListener("keydown", e => {
+    const k = (e.key || "").toLowerCase();
+    if ((e.metaKey || e.ctrlKey) && !e.altKey && ["s", "u", "p"].includes(k) && !esCampo(e.target)) e.preventDefault();
+  });
   document.addEventListener("dragstart", e => { if (e.target && e.target.tagName === "IMG") e.preventDefault(); });
   const st = document.createElement("style");
   st.textContent = "img{-webkit-user-drag:none;user-drag:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}";

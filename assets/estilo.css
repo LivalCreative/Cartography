@@ -362,3 +362,4 @@ h3.cat{font-family:var(--titulo);font-weight:800;font-size:21px;margin:0 0 12px;
 .pedir-mini p{margin:0;font-weight:600;color:var(--tinta)}
 .pedir-mini p small{display:block;font-weight:400;color:var(--tinta2);font-size:14px}
 @media (max-width:600px){.pedir-mini .btn{width:100%}}
+.pie .derechos{margin:18px auto 0;max-width:640px;font-size:12px;line-height:1.5;opacity:.7}
