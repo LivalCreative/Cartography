@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="../assets/estilo.css?v=30">
+<link rel="stylesheet" href="../assets/estilo.css?v=31">
 <link rel="stylesheet" href="../assets/navidad.css?v=8">
 <script src="../assets/nieve.js?v=3"></script>
 </head>
@@ -43,6 +43,7 @@
           <div class="pastillas" data-f="rango"><button type="button" data-v="" aria-pressed="true">Todos</button><button type="button" data-v="0-200">Hasta $200</button><button type="button" data-v="200-500">$200 – $500</button><button type="button" data-v="500-1000">$500 – $1,000</button><button type="button" data-v="1000-99999">Más de $1,000</button></div></div>
       </div>
       <div id="grid"></div>
+      <div class="pedir-mini" id="pedirMini"><p>¿No encontraste lo que buscabas?<small>Mándanos el link o foto y te lo cotizamos.</small></p><a class="btn wa" id="pedirMiniWa" href="#" target="_blank" rel="noopener">Pedirlo por WhatsApp</a></div>
       <div id="noEncontrado" class="caja vacio" hidden>
         <p style="margin:0 0 14px">No encontramos esta categoría.</p>
         <a class="btn" href="../#productos">Ver categorías</a>
@@ -68,6 +69,7 @@
 (function () {
   const C = window.CARTO, U = window.CARTO_UI, esc = U.esc, $ = id => document.getElementById(id);
   const q = new URLSearchParams(location.search);
+  $("pedirMiniWa").href = "https://wa.me/52" + C.WHATSAPP + "?text=" + encodeURIComponent("¡Hola Cartography! Busco un producto que no vi en la tienda: ");
   const mq = q.get("marca");
   if (mq) {
     const ps = U.productosMarca(mq), nom = ps.length ? ps[0].marca : "Marca";
@@ -114,7 +116,7 @@
   $("tituloGrid").firstChild.textContent = (g ? g : "Todo en " + c.nombre) + " ";
 
   if (g && !base0.length) {
-    $("filtros").hidden = true;
+    $("filtros").hidden = true; $("pedirMini").hidden = true;
     $("sub").textContent = desc || "";
     const wa = "https://wa.me/52" + C.WHATSAPP + "?text=" + encodeURIComponent("¡Hola! Busco ropa de " + g + " de Estados Unidos. ¿Me ayudan a encontrar algo?");
     $("grid").innerHTML = '<div class="caja vacio pronto-caja"><img src="' + esc(U.fotoGrupo(c, g)) + '" alt="" width="90" height="90"><h3>Muy pronto subimos ropa de ' + esc(g) + '</h3><p>¿Buscas algo en especial? Mándanos la foto o el link de Walmart y te decimos cuánto cuesta traerlo.</p><a class="btn wa" href="' + wa + '" target="_blank" rel="noopener">Pedirlo por WhatsApp</a></div>';

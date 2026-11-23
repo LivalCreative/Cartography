@@ -343,3 +343,22 @@ h3.cat{font-family:var(--titulo);font-weight:800;font-size:21px;margin:0 0 12px;
 .cambiar{text-align:center;margin:-6px 0 14px}
 .cambiar a{display:inline-flex;align-items:center;gap:4px;font-size:14px;font-weight:700;color:var(--rosa2);text-decoration:none;background:#fff;border:1.5px solid var(--linea);padding:7px 14px;border-radius:999px}
 .cambiar a:hover{border-color:var(--rosa)}
+/* Pedidos especiales */
+.pedir-caja{display:grid;grid-template-columns:1.25fr .9fr;gap:28px;align-items:center;background:linear-gradient(135deg,#fff 0%,var(--rosaclaro) 100%);border:1.5px solid var(--linea);border-radius:28px;padding:32px 34px;box-shadow:0 10px 30px rgba(62,44,71,.08);position:relative;overflow:hidden}
+.pedir-caja .kicker{background:#fff;margin-bottom:10px}
+.pedir-caja .sec{margin:0 0 8px;font-size:clamp(26px,3.4vw,36px);line-height:1.1}
+.pedir-caja .resalta{color:var(--rosa);display:inline-block}
+.pedir-caja .sub{margin:0 0 16px}
+.pedir-pasos{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:10px}
+.pedir-pasos li{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--tinta2)}
+.pedir-pasos li b{flex:0 0 30px;height:30px;border-radius:50%;background:var(--rosa);color:#fff;display:grid;place-items:center;font-size:14px}
+.pedir-pasos strong{color:var(--tinta)}
+.pedir-arte{display:flex;flex-direction:column;gap:12px;padding:10px}
+.burbuja{max-width:85%;background:#fff;border-radius:18px 18px 18px 4px;padding:12px 16px;font-size:15px;font-weight:600;color:var(--tinta);box-shadow:0 6px 16px rgba(62,44,71,.1)}
+.burbuja.yo{align-self:flex-end;background:#dcf8c6;border-radius:18px 18px 4px 18px}
+.burbuja.b1{transform:rotate(-2deg)}.burbuja.b2{transform:rotate(1.5deg)}.burbuja.b3{transform:rotate(-1deg)}
+@media (max-width:760px){.pedir-caja{grid-template-columns:1fr;padding:24px 20px}.pedir-arte{order:-1;padding:0}.pedir-caja .btn{width:100%}}
+.pedir-mini{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;background:#fff;border:1.5px dashed var(--rosa);border-radius:20px;padding:18px 22px;margin:10px 0 0}
+.pedir-mini p{margin:0;font-weight:600;color:var(--tinta)}
+.pedir-mini p small{display:block;font-weight:400;color:var(--tinta2);font-size:14px}
+@media (max-width:600px){.pedir-mini .btn{width:100%}}
