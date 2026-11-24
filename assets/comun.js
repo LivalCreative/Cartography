@@ -37,8 +37,8 @@
       iconosGrupo: { "Bebé": "bebe", "Niñas": "ninas", "Niños": "ninos", "Adolescente mujer": "teen-mujer", "Adolescente hombre": "teen-hombre", "Mujer": "mujer", "Hombre": "hombre" },
       descGrupo: { "Bebé": "De recién nacido a 24 meses", "Niñas": "Tallas 2T a 12", "Niños": "Tallas 2T a 12", "Adolescente mujer": "Tallas 12 a 18 de niña y juveniles", "Adolescente hombre": "Tallas 12 a 18 de niño y juveniles", "Mujer": "Tallas de adulto", "Hombre": "Tallas de adulto" },
       tipos: ["Sudaderas", "Playeras", "Conjuntos", "Pantalones", "Pijamas", "Mamelucos"] },
-    { id: "loncheras", icono: "loncheras", iconosGrupo: { "Para niños": "lonch-ninos", "Para adultos": "lonch-adultos", "Mochilas": "mochilas", "Contenedores y accesorios": "contenedores" }, nombre: "Loncheras", sub: "Loncheras y mochilas Bentgo para niños y adultos, termos y contenedores para llevar la comida a donde sea.",
-      grupos: ["Para niños", "Para adultos", "Mochilas", "Contenedores y accesorios"], portada: ["t76556680"], fotosGrupo: { "Para adultos": "t94858670" } },
+    { id: "loncheras", icono: "loncheras", iconosGrupo: { "Para niños": "lonch-ninos", "Para adultos": "lonch-adultos", "Mochilas": "mochilas", "Contenedores y accesorios": "contenedores", "Termos y botellas": "termos" }, nombre: "Loncheras", sub: "Loncheras y mochilas Bentgo, termos Owala y contenedores para llevar la comida a donde sea.",
+      grupos: ["Para niños", "Para adultos", "Mochilas", "Termos y botellas", "Contenedores y accesorios"], portada: ["t76556680"], fotosGrupo: { "Para adultos": "t94858670" } },
   ];
   const catPorId = id => CATEGORIAS.find(c => c.id === id);
   const catDe = p => CATEGORIAS.find(c => c.nombre === (p.categoria || "Holidays"));
