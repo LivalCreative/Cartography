@@ -69,7 +69,7 @@
 (function () {
   const C = window.CARTO, U = window.CARTO_UI, esc = U.esc, $ = id => document.getElementById(id);
   const q = new URLSearchParams(location.search);
-  $("pedirMiniWa").href = "https://wa.me/52" + C.WHATSAPP + "?text=" + encodeURIComponent("¡Hola Cartography! Busco un producto que no vi en la tienda: ");
+  $("pedirMiniWa").href = "https://wa.me/52" + C.WHATSAPP + "?text=" + encodeURIComponent("🔎 Solicitud *Cartography*\n\n¡Hola Cartography! Busco un producto que no vi en la tienda: ");
   const mq = q.get("marca");
   if (mq) {
     const ps = U.productosMarca(mq), nom = ps.length ? ps[0].marca : "Marca";
@@ -118,7 +118,7 @@
   if (g && !base0.length) {
     $("filtros").hidden = true; $("pedirMini").hidden = true;
     $("sub").textContent = desc || "";
-    const wa = "https://wa.me/52" + C.WHATSAPP + "?text=" + encodeURIComponent("¡Hola! Busco ropa de " + g + " de Estados Unidos. ¿Me ayudan a encontrar algo?");
+    const wa = "https://wa.me/52" + C.WHATSAPP + "?text=" + encodeURIComponent("🔎 Solicitud *Cartography*\n\n¡Hola! Busco ropa de " + g + " de Estados Unidos. ¿Me ayudan a encontrar algo?");
     $("grid").innerHTML = '<div class="caja vacio pronto-caja"><img src="' + esc(U.fotoGrupo(c, g)) + '" alt="" width="90" height="90"><h3>Muy pronto subimos ropa de ' + esc(g) + '</h3><p>¿Buscas algo en especial? Mándanos la foto o el link de Walmart y te decimos cuánto cuesta traerlo.</p><a class="btn wa" href="' + wa + '" target="_blank" rel="noopener">Pedirlo por WhatsApp</a></div>';
     return;
   }
