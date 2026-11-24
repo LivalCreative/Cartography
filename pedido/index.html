@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="../assets/estilo.css?v=32">
+<link rel="stylesheet" href="../assets/estilo.css?v=33">
 <link rel="stylesheet" href="../assets/navidad.css?v=8">
 <script src="../assets/nieve.js?v=3"></script>
 </head>
@@ -37,12 +37,13 @@
       <div class="caja" id="lineas"></div>
       <div class="caja">
         <h2 style="font-size:17px;font-weight:800;margin:0 0 12px">Tus datos</h2>
-        <label class="campo">Tu nombre<input id="fNombre" autocomplete="name" placeholder="Ana López"></label>
-        <p class="error" id="eNombre" hidden>Escribe tu nombre.</p>
-        <label class="campo">Punto de entrega que prefieres
-          <select id="fLugar"></select>
+        <p class="nota oblig">Los campos con <b>*</b> son obligatorios.</p>
+        <label class="campo">Tu nombre completo <b class="ast">*</b><input id="fNombre" autocomplete="name" placeholder="Ana López" required></label>
+        <p class="error" id="eNombre" hidden>Escribe tu nombre para poder registrar tu pedido.</p>
+        <label class="campo">Punto de entrega que prefieres <b class="ast">*</b>
+          <select id="fLugar" required></select>
         </label>
-        <p class="error" id="eLugar" hidden>Elige un punto de entrega.</p>
+        <p class="error" id="eLugar" hidden>Elige dónde quieres recibir tu pedido.</p>
         <label class="campo">Comentarios (opcional)<textarea id="fNotas" placeholder="Es para regalo, prefiero entrega en la tarde…"></textarea></label>
         <p class="nota" style="margin:-4px 0 0">El día y la hora de entrega los acordamos por WhatsApp cuando llegue tu pedido.</p>
       </div>
@@ -123,13 +124,18 @@
   });
   document.addEventListener("carto:pedido", pintar);
 
-  ["fNombre", "fLugar"].forEach(id => $(id).addEventListener("input", () => { $("e" + id.slice(1)).hidden = true; }));
+  const listo = () => $("fNombre").value.trim().length >= 3 && !!$("fLugar").value;
+  const marca = () => $("enviar").classList.toggle("bloq", !listo());
+  ["fNombre", "fLugar"].forEach(id => ["input", "change"].forEach(ev => $(id).addEventListener(ev, () => { $("e" + id.slice(1)).hidden = true; $(id).classList.remove("mal"); marca(); })));
+  marca();
 
   $("enviar").addEventListener("click", () => {
     const nombre = $("fNombre").value.trim(), lugar = $("fLugar").value;
-    $("eNombre").hidden = !!nombre; $("eLugar").hidden = !!lugar;
-    if (!nombre) { $("fNombre").focus(); return; }
-    if (!lugar) { $("fLugar").focus(); return; }
+    const okN = nombre.length >= 3;
+    $("eNombre").hidden = okN; $("eLugar").hidden = !!lugar;
+    $("fNombre").classList.toggle("mal", !okN); $("fLugar").classList.toggle("mal", !lugar);
+    const malo = !okN ? $("fNombre") : !lugar ? $("fLugar") : null;
+    if (malo) { malo.scrollIntoView({ behavior: "smooth", block: "center" }); setTimeout(() => malo.focus(), 350); return; }
     const d = datos();
     const notas = $("fNotas").value.trim();
     const msg = ["¡Hola Cartography! Quiero hacer este pedido:", ""]
