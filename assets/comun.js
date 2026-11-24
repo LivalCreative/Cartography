@@ -64,6 +64,7 @@
   // Marcas destacadas: nombre igual a p.marca; logo opcional en img/marcas/ (si no hay, se muestra el nombre con estilo)
   const MARCAS = [
     { nombre: "Bentgo", logo: "img/marcas/bentgo.png", fondo: "#48a5dc" },
+    { nombre: "Owala", logo: "img/marcas/owala.png", fondo: "#282f7d" },
     { nombre: "LEGO", logo: "img/marcas/lego.png", fondo: "#ffffff" },
     { nombre: "HERSHEY'S", logo: "img/marcas/hersheys.png", fondo: "#43141a" },
     { nombre: "Lindt", logo: "img/marcas/lindt.png", fondo: "#ffffff" },
