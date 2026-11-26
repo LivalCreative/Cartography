@@ -162,7 +162,9 @@
   if (p.tallas) muestraOpcion(p.tallas.nombre, "Tallas de Estados Unidos");
   if (p.variantes && p.variantes.length) {
     $("colores").hidden = false; $("elegir").hidden = false; $("colLbl").textContent = p.opciones.nombre; $("colCuenta").textContent = p.variantes.length + " opciones";
-    $("muestras").innerHTML = p.variantes.map((v, i) => '<button type="button" data-i="' + i + '" title="' + esc(v.n) + '" aria-label="' + esc(v.n) + '"><img src="' + esc(v.f) + '" alt=""></button>').join("");
+    const enTexto = p.opciones.texto || /^(capacidad|tamaño|versión|medida)$/i.test(p.opciones.nombre);
+    if (enTexto) { $("muestras").className = "chips"; $("muestras").innerHTML = p.variantes.map((v, i) => '<button type="button" data-i="' + i + '">' + esc(v.n) + "</button>").join(""); }
+    else $("muestras").innerHTML = p.variantes.map((v, i) => '<button type="button" data-i="' + i + '" title="' + esc(v.n) + '" aria-label="' + esc(v.n) + '"><img src="' + esc(v.f) + '" alt=""></button>').join("");
     const elige = i => {
       varSel = p.variantes[i]; $("colSel").textContent = varSel.n;
       $("fotoGrande").src = varSel.fs ? varSel.fs[0] : varSel.f; if (varSel.fs) pintaGaleria(varSel.fs); $("precio").textContent = C.dinero(varSel.p);
