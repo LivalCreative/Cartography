@@ -16,9 +16,9 @@
     return PASOS.map((p, i) => (i ? '<div class="dash"></div>' : "") + '<div class="st"><div class="ic">' + ICO[p[0]] + "</div>" + p[1] + "</div>").join("");
   }
   function tarjetaHTML(p, base) {
-    return '<a class="prod" href="' + base + encodeURIComponent(p.id) + '"><div class="foto"><img loading="lazy" src="' + esc(p.fotos[0]) + '" alt="' + esc(p.nombre) + '">' +
+    return '<a class="prod' + (p.agotado ? " agotado" : "") + '" href="' + base + encodeURIComponent(p.id) + '"><div class="foto"><img loading="lazy" src="' + esc(p.fotos[0]) + '" alt="' + esc(p.nombre) + '">' +
       (p.fotos[1] ? '<img class="alt" loading="lazy" src="' + esc(p.fotos[1]) + '" alt="">' : "") +
-      (p.badge ? '<span class="badge">' + esc(p.badge) + "</span>" : "") + (p.variantes && p.variantes.length > 1 ? '<span class="nvar">' + p.variantes.length + " opciones</span>" : "") + '</div><div class="info"><span class="marca">' + esc(p.marca) +
+      (p.agotado ? '<span class="badge agot">Agotado</span>' : p.badge ? '<span class="badge">' + esc(p.badge) + "</span>" : "") + (p.variantes && p.variantes.length > 1 ? '<span class="nvar">' + p.variantes.length + " opciones</span>" : "") + '</div><div class="info"><span class="marca">' + esc(p.marca) +
       '</span><span class="nom">' + esc(p.nombre) + '</span><span class="pre">' + C.dinero(p.precio) + "</span></div></a>";
   }
 

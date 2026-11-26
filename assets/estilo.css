@@ -368,3 +368,10 @@ h3.cat{font-family:var(--titulo);font-weight:800;font-size:21px;margin:0 0 12px;
 .campo input.mal,.campo select.mal{border-color:#b42318!important;box-shadow:0 0 0 3px rgba(180,35,24,.15)}
 .error{font-weight:600}
 .btn.bloq{opacity:.55}
+
+.prod.agotado .foto img{filter:grayscale(.85);opacity:.7}
+.badge.agot{background:#5a4a63!important;color:#fff!important}
+.agotado-caja{display:flex;flex-direction:column;gap:6px;background:#f6eeee;border:1.5px dashed #b42318;border-radius:14px;padding:14px 16px;margin:0 0 18px}
+.agotado-caja b{color:#b42318;font-size:17px}
+.agotado-caja span{font-size:14px;color:#5a4a63}
+.agotado-caja .btn{align-self:flex-start;margin-top:4px}
