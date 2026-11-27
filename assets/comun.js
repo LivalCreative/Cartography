@@ -39,8 +39,8 @@
       tipos: ["Sudaderas", "Playeras", "Conjuntos", "Pantalones", "Pijamas", "Mamelucos"] },
     { id: "loncheras", icono: "loncheras", iconosGrupo: { "Para niños": "lonch-ninos", "Para adultos": "lonch-adultos", "Mochilas": "mochilas", "Contenedores y accesorios": "contenedores", "Termos y botellas": "termos" }, nombre: "Loncheras", sub: "Loncheras y mochilas Bentgo, termos Owala y contenedores para llevar la comida a donde sea.",
       grupos: ["Para niños", "Para adultos", "Mochilas", "Termos y botellas", "Contenedores y accesorios"], portada: ["t76556680"], fotosGrupo: { "Para adultos": "t94858670" } },
-    { id: "hogar", icono: "hogar", iconosGrupo: { "Freidoras de aire": "freidoras" }, nombre: "Hogar y cocina", sub: "Aparatos y cosas para la cocina y la casa, de marcas de Estados Unidos.",
-      grupos: ["Freidoras de aire"], portada: ["t89110863"] },
+    { id: "hogar", icono: "hogar", iconosGrupo: { "Freidoras de aire": "freidoras", "Organización de cocina": "hogar" }, nombre: "Hogar y cocina", sub: "Aparatos y cosas para la cocina y la casa, de marcas de Estados Unidos.",
+      grupos: ["Freidoras de aire", "Organización de cocina"], portada: ["t89110863"] },
   ];
   const catPorId = id => CATEGORIAS.find(c => c.id === id);
   const catDe = p => CATEGORIAS.find(c => c.nombre === (p.categoria || "Holidays"));
