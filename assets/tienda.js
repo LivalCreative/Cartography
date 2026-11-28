@@ -22,6 +22,25 @@
   const DIAS = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
   const MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
 
+  // ---- Tiendas en pausa ----
+  // Para reactivar Walmart o Sam's, quita su letra de esta lista: "w" = Walmart, "s" = Sam's.
+  const PAUSADAS = ["w", "s"];
+  if (PAUSADAS.length && window.CARTO_PRODUCTOS) {
+    const pausada = t => PAUSADAS.some(x => (t || "").toLowerCase().startsWith(x));
+    window.CARTO_PRODUCTOS = window.CARTO_PRODUCTOS.filter(p => !pausada(p.id)).filter(p => {
+      if (!p.variantes) return true;
+      const quedan = p.variantes.filter(v => !pausada(v.t));
+      if (!quedan.length) return false;
+      if (quedan.length !== p.variantes.length) {
+        p.variantes = quedan;
+        if (p.opciones) p.opciones.valores = quedan.map(v => v.n);
+        p.precio = Math.min(...quedan.map(v => v.p));
+        if (quedan[0].fs) p.fotos = quedan[0].fs;
+      }
+      return true;
+    });
+  }
+
   const PRODUCTOS = window.CARTO_PRODUCTOS || [];
   const porId = id => PRODUCTOS.find(p => p.id === id);
 

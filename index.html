@@ -142,7 +142,7 @@
 <div class="aviso" id="aviso" hidden role="status"></div>
 
 <script src="assets/productos.js?v=175"></script>
-<script src="assets/tienda.js?v=8"></script>
+<script src="assets/tienda.js?v=9"></script>
 <script src="assets/comun.js?v=34"></script>
 <script>
 (function () {
@@ -168,8 +168,8 @@
   pa.target = "_blank"; pa.rel = "noopener";
   document.getElementById("pedirWa").href = pa.href;
 
-  document.getElementById("marcasGrid").innerHTML = U.MARCAS.map(m => U.marcaHTML(m, "categoria/")).join("");
-  document.getElementById("cats").innerHTML = U.CATEGORIAS.map(c => U.circuloHTML("categoria/?c=" + c.id, U.fotoCategoria(c), c.nombre)).join("");
+  document.getElementById("marcasGrid").innerHTML = U.MARCAS.filter(m => U.productosMarca(m.nombre).length).map(m => U.marcaHTML(m, "categoria/")).join("");
+  document.getElementById("cats").innerHTML = U.CATEGORIAS.filter(c => U.productosDe(c).length).map(c => U.circuloHTML("categoria/?c=" + c.id, U.fotoCategoria(c), c.nombre)).join("");
 })();
 </script>
 </body>

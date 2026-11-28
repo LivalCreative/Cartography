@@ -63,7 +63,7 @@
 <div class="aviso" id="aviso" hidden role="status"></div>
 
 <script src="../assets/productos.js?v=175"></script>
-<script src="../assets/tienda.js?v=8"></script>
+<script src="../assets/tienda.js?v=9"></script>
 <script src="../assets/comun.js?v=34"></script>
 <script>
 (function () {
@@ -81,12 +81,12 @@
     $("sub").textContent = ps.length + " productos. Toca uno para ver qué es y cuándo te llega.";
     const cats = [...new Set(ps.map(p => p.categoria))];
     $("grid").innerHTML = ps.length ? cats.map(ct => '<div class="seccion-cat"><h3 class="cat">' + esc(ct) + '</h3><div class="grid">' + ps.filter(p => p.categoria === ct).map(p => U.tarjetaHTML(p, "../producto/?id=")).join("") + "</div></div>").join("") : '<p class="sub">Pronto tendremos productos de esta marca.</p>';
-    $("cats").innerHTML = U.CATEGORIAS.map(x => U.circuloHTML("./?c=" + x.id, U.fotoCategoria(x), x.nombre)).join("");
+    $("cats").innerHTML = U.CATEGORIAS.filter(x => U.productosDe(x).length).map(x => U.circuloHTML("./?c=" + x.id, U.fotoCategoria(x), x.nombre)).join("");
     $("otras").querySelector("h2").firstChild.textContent = "Categorías ";
     return;
   }
   const c = U.catPorId(q.get("c"));
-  const otras = U.CATEGORIAS.filter(x => x !== c);
+  const otras = U.CATEGORIAS.filter(x => x !== c && U.productosDe(x).length);
   $("cats").innerHTML = otras.map(x => U.circuloHTML("./?c=" + x.id, U.fotoCategoria(x), x.nombre)).join("");
   if (!otras.length) $("otras").hidden = true;
   if (!c) { $("noEncontrado").hidden = false; $("tituloGrid").hidden = true; return; }
